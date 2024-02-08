@@ -16,8 +16,9 @@ const DrawerHeader = ({ open }) => {
   return (
     // only available in paid version
     <DrawerHeaderStyled theme={theme} open={open}>
-      <Stack direction="row" spacing={1} alignItems="center">
+      <Stack direction="column" spacing={2} alignItems="center" sx={{ pt: '2em' }}>
         <Logo />
+        <span>James(manager)</span>
       </Stack>
     </DrawerHeaderStyled>
   );

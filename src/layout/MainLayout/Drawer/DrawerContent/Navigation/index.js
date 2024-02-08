@@ -3,6 +3,7 @@ import { Box, Typography } from '@mui/material';
 
 // project import
 import NavGroup from './NavGroup';
+import NavItem from './NavItem';
 import menuItem from 'menu-items';
 
 // ==============================|| DRAWER CONTENT - NAVIGATION ||============================== //
@@ -12,6 +13,8 @@ const Navigation = () => {
     switch (item.type) {
       case 'group':
         return <NavGroup key={item.id} item={item} />;
+      case 'single-item':
+        return <NavItem key={item.id} item={item} level={1} />;
       default:
         return (
           <Typography key={item.id} variant="h6" color="error" align="center">

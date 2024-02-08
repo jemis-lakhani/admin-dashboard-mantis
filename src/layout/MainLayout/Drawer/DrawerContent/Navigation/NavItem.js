@@ -57,31 +57,15 @@ const NavItem = ({ item, level }) => {
       sx={{
         zIndex: 1201,
         justifyContent: 'space-between',
-        pl: drawerOpen ? `${level * 38}px` : 1.5,
+        pl: drawerOpen && !itemIcon ? `${level * 38}px` : 2,
         py: !drawerOpen && level === 1 ? 1.25 : 1,
         ...(drawerOpen && {
-          '&:hover': {
-            bgcolor: 'primary.lighter'
-          },
           '&.Mui-selected': {
-            bgcolor: 'primary.lighter',
             borderRight: `2px solid ${theme.palette.primary.main}`,
-            color: iconSelectedColor,
+            backgroundColor: 'transparent',
             '&:hover': {
-              color: iconSelectedColor,
-              bgcolor: 'primary.lighter'
+              backgroundColor: 'primary.lighter'
             }
-          }
-        }),
-        ...(!drawerOpen && {
-          '&:hover': {
-            bgcolor: 'transparent'
-          },
-          '&.Mui-selected': {
-            '&:hover': {
-              bgcolor: 'transparent'
-            },
-            bgcolor: 'transparent'
           }
         })
       }}
@@ -116,7 +100,7 @@ const NavItem = ({ item, level }) => {
       {(drawerOpen || (!drawerOpen && level !== 1)) && (
         <ListItemText
           primary={
-            <Typography variant="h6" sx={{ color: isSelected ? iconSelectedColor : textColor }}>
+            <Typography variant="h6" sx={{ color: isSelected ? iconSelectedColor : textColor, marginLeft: itemIcon ? '0px' : '10px' }}>
               {item.title}
             </Typography>
           }

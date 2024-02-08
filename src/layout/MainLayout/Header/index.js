@@ -1,15 +1,9 @@
 import PropTypes from 'prop-types';
-
-// material-ui
 import { useTheme } from '@mui/material/styles';
 import { AppBar, IconButton, Toolbar, useMediaQuery } from '@mui/material';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
-
-// project import
 import AppBarStyled from './AppBarStyled';
 import HeaderContent from './HeaderContent';
-
-// ==============================|| MAIN LAYOUT - HEADER ||============================== //
 
 const Header = ({ open, handleDrawerToggle }) => {
   const theme = useTheme();

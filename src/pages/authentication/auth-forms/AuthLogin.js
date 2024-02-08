@@ -23,12 +23,12 @@ function AuthLogin() {
           maxWidth: '100%',
           position: 'absolute',
           inset: 0,
-          backgroundImage: "url('/free/bg.png')"
+          backgroundImage: "url('/bg.png')"
         }}
       >
         <Box
           sx={{
-            backgroundImage: "url('/free/logo1.svg')",
+            backgroundImage: "url('/logo1.svg')",
             width: '50px',
             height: '50px',
             m: '5% auto 0'
@@ -36,7 +36,7 @@ function AuthLogin() {
         ></Box>
         <Box
           sx={{
-            backgroundImage: "url('/free/logo2.svg')",
+            backgroundImage: "url('/logo2.svg')",
             width: '150px',
             height: '30px',
             m: '1% auto 0'
@@ -85,7 +85,7 @@ function AuthLogin() {
                   margin: '3px auto 12px'
                 }}
               >
-                <img style={{ height: '50px', width: '50px' }} src="/free/login_encrypted.svg" alt="" />
+                <img style={{ height: '50px', width: '50px' }} src="/login_encrypted.svg" alt="" />
               </Box>
             </Grid>
             <Grid item>

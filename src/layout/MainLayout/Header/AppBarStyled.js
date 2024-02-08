@@ -1,8 +1,5 @@
-// material-ui
 import { styled } from '@mui/material/styles';
 import AppBar from '@mui/material/AppBar';
-
-// ==============================|| HEADER - APP BAR STYLED ||============================== //
 
 const AppBarStyled = styled(AppBar, { shouldForwardProp: (prop) => prop !== 'open' })(({ theme, open }) => ({
   zIndex: 1301,

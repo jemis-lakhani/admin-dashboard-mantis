@@ -1,26 +1,9 @@
-// material-ui
 import { useTheme } from '@mui/material/styles';
-
-/**
- * if you want to use image instead of <svg> uncomment following.
- *
- * import logoDark from 'assets/images/logo-dark.svg';
- * import logo from 'assets/images/logo.svg';
- *
- */
-
-// ==============================|| LOGO SVG ||============================== //
 
 const Logo = () => {
   const theme = useTheme();
 
   return (
-    /**
-     * if you want to use image instead of svg uncomment following, and comment out <svg> element.
-     *
-     * <img src={logo} alt="Mantis" width="100" />
-     *
-     */
     <>
       <svg viewBox="0 0 238 45" height="35" width="118" xmlns="http://www.w3.org/2000/svg">
         <g transform="matrix(0.10000000149011612, 0, 0, -0.10000000149011612, 0, 45)" fill="#000000" stroke="none">

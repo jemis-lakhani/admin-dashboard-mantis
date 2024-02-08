@@ -1,8 +1,4 @@
 // project import
-import pages from './pages';
-import dashboard from './dashboard';
-import utilities from './utilities';
-import support from './support';
 import { FontSizeOutlined } from '@ant-design/icons';
 
 // ==============================|| MENU ITEMS ||============================== //
@@ -17,15 +13,13 @@ const memberManage = {
       id: 'member-list',
       title: 'Member List',
       type: 'item',
-      // url: '/member-list'
-      url: '/typography'
+      url: '/member-list'
     },
     {
       id: 'accessor-list',
       title: 'Accessors List',
       type: 'item',
-      // url: '/accessor-list'
-      url: '/color'
+      url: '/accessor-list'
     },
     {
       id: 'member-note',
@@ -166,18 +160,17 @@ const preferences = {
   title: 'Preferences',
   type: 'single-item',
   icon: FontSizeOutlined,
-  url: '/icons/ant'
+  url: '/preferences'
 };
 const administrator = {
   id: 'administrator',
   title: 'Administrator',
   type: 'single-item',
   icon: FontSizeOutlined,
-  url: '/shadow'
+  url: '/administrator'
 };
 
 const menuItems = {
-  // items: [dashboard, pages, utilities, support]
   items: [memberManage, gameManage, bettingManage, inOutManage, bulletinManage, statistics, partnerManage, preferences, administrator]
 };
 

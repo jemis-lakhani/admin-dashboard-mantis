@@ -1,26 +1,18 @@
 import PropTypes from 'prop-types';
-// import { useSelector } from 'react-redux';
-
-// material-ui
 import { List, Typography, ListItemButton, ListItemText, ListItemIcon } from '@mui/material';
 
-// project import
 import NavItem from './NavItem';
 import Collapse from '@mui/material/Collapse';
 import ExpandLess from '@mui/icons-material/ExpandLess';
 import ExpandMore from '@mui/icons-material/ExpandMore';
 import { useSelector } from 'react-redux';
-import { useTheme } from '@mui/material/styles';
 import { useLocation } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 
 const textColor = 'text.primary';
 const iconSelectedColor = 'white';
 
-// ==============================|| NAVIGATION - LIST GROUP ||============================== //
-
 const NavGroup = ({ item }) => {
-  const theme = useTheme();
   const { drawerOpen } = useSelector((state) => state.menu);
   const [open, setOpen] = useState(false);
   const [isChildActive, setisChildActive] = useState(false);
@@ -44,12 +36,6 @@ const NavGroup = ({ item }) => {
 
   const navCollapse = item.children?.map((menuItem) => {
     switch (menuItem.type) {
-      case 'collapse':
-        return (
-          <Typography key={menuItem.id} variant="caption" color="error" sx={{ p: 2.5 }}>
-            collapse - only available in paid version
-          </Typography>
-        );
       case 'item':
         return <NavItem key={menuItem.id} item={menuItem} level={1} />;
       default:

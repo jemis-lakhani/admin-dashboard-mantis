@@ -1,15 +1,10 @@
-// material-ui
 import { Avatar, Box, Button, Grid, IconButton, Typography, Stack, useMediaQuery } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
 import DownloadForOfflineOutlinedIcon from '@mui/icons-material/DownloadForOfflineOutlined';
-
-// project import
 import Notification from './Notification';
 import DataInformation from './DataInformation/index';
 import AccountStatistics from './AccountStatistics/index';
-
-// ==============================|| HEADER - CONTENT ||============================== //
 
 const HeaderContent = () => {
   const matchesXs = useMediaQuery((theme) => theme.breakpoints.down('md'));
@@ -17,7 +12,7 @@ const HeaderContent = () => {
   const theme = useTheme();
   return (
     <>
-      {/* NUmber of members */}
+      {/* Number of members */}
       <Grid display="flex" alignItems="center">
         <Avatar variant="rounded" sx={{ bgcolor: 'transparent' }}>
           <AccountCircleOutlinedIcon sx={{ color: 'gray' }} />

@@ -1,175 +1,183 @@
 import React from 'react';
-import { Link as RouterLink } from 'react-router-dom';
+import { TextField, Button, Typography, Container, Box, Grid } from '@mui/material';
+import ReactCountryFlag from 'react-country-flag';
+import { useForm } from 'react-hook-form';
 
-// material-ui
-import {
-  Button,
-  Checkbox,
-  Divider,
-  FormControlLabel,
-  FormHelperText,
-  Grid,
-  Link,
-  IconButton,
-  InputAdornment,
-  InputLabel,
-  OutlinedInput,
-  Stack,
-  Typography
-} from '@mui/material';
+function AuthLogin() {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors }
+  } = useForm();
 
-// third party
-import * as Yup from 'yup';
-import { Formik } from 'formik';
-
-// project import
-import FirebaseSocial from './FirebaseSocial';
-import AnimateButton from 'components/@extended/AnimateButton';
-
-// assets
-import { EyeOutlined, EyeInvisibleOutlined } from '@ant-design/icons';
-
-// ============================|| FIREBASE - LOGIN ||============================ //
-
-const AuthLogin = () => {
-  const [checked, setChecked] = React.useState(false);
-
-  const [showPassword, setShowPassword] = React.useState(false);
-  const handleClickShowPassword = () => {
-    setShowPassword(!showPassword);
-  };
-
-  const handleMouseDownPassword = (event) => {
-    event.preventDefault();
+  const onSubmit = (data) => {
+    console.log({ data });
   };
 
   return (
-    <>
-      <Formik
-        initialValues={{
-          email: 'info@codedthemes.com',
-          password: '123456',
-          submit: null
-        }}
-        validationSchema={Yup.object().shape({
-          email: Yup.string().email('Must be a valid email').max(255).required('Email is required'),
-          password: Yup.string().max(255).required('Password is required')
-        })}
-        onSubmit={async (values, { setErrors, setStatus, setSubmitting }) => {
-          try {
-            setStatus({ success: false });
-            setSubmitting(false);
-          } catch (err) {
-            setStatus({ success: false });
-            setErrors({ submit: err.message });
-            setSubmitting(false);
-          }
+    <Box>
+      <Container
+        sx={{
+          background: 'linear-gradient(to right, #fuchsia-300, #sky-500)',
+          height: '40%',
+          maxWidth: '100%',
+          position: 'absolute',
+          inset: 0,
+          backgroundImage: "url('/free/bg.png')"
         }}
       >
-        {({ errors, handleBlur, handleChange, handleSubmit, isSubmitting, touched, values }) => (
-          <form noValidate onSubmit={handleSubmit}>
-            <Grid container spacing={3}>
-              <Grid item xs={12}>
-                <Stack spacing={1}>
-                  <InputLabel htmlFor="email-login">Email Address</InputLabel>
-                  <OutlinedInput
-                    id="email-login"
-                    type="email"
-                    value={values.email}
-                    name="email"
-                    onBlur={handleBlur}
-                    onChange={handleChange}
-                    placeholder="Enter email address"
-                    fullWidth
-                    error={Boolean(touched.email && errors.email)}
-                  />
-                  {touched.email && errors.email && (
-                    <FormHelperText error id="standard-weight-helper-text-email-login">
-                      {errors.email}
-                    </FormHelperText>
-                  )}
-                </Stack>
-              </Grid>
-              <Grid item xs={12}>
-                <Stack spacing={1}>
-                  <InputLabel htmlFor="password-login">Password</InputLabel>
-                  <OutlinedInput
-                    fullWidth
-                    error={Boolean(touched.password && errors.password)}
-                    id="-password-login"
-                    type={showPassword ? 'text' : 'password'}
-                    value={values.password}
-                    name="password"
-                    onBlur={handleBlur}
-                    onChange={handleChange}
-                    endAdornment={
-                      <InputAdornment position="end">
-                        <IconButton
-                          aria-label="toggle password visibility"
-                          onClick={handleClickShowPassword}
-                          onMouseDown={handleMouseDownPassword}
-                          edge="end"
-                          size="large"
-                        >
-                          {showPassword ? <EyeOutlined /> : <EyeInvisibleOutlined />}
-                        </IconButton>
-                      </InputAdornment>
-                    }
-                    placeholder="Enter password"
-                  />
-                  {touched.password && errors.password && (
-                    <FormHelperText error id="standard-weight-helper-text-password-login">
-                      {errors.password}
-                    </FormHelperText>
-                  )}
-                </Stack>
-              </Grid>
-
-              <Grid item xs={12} sx={{ mt: -1 }}>
-                <Stack direction="row" justifyContent="space-between" alignItems="center" spacing={2}>
-                  <FormControlLabel
-                    control={
-                      <Checkbox
-                        checked={checked}
-                        onChange={(event) => setChecked(event.target.checked)}
-                        name="checked"
-                        color="primary"
-                        size="small"
-                      />
-                    }
-                    label={<Typography variant="h6">Keep me sign in</Typography>}
-                  />
-                  <Link variant="h6" component={RouterLink} to="" color="text.primary">
-                    Forgot Password?
-                  </Link>
-                </Stack>
-              </Grid>
-              {errors.submit && (
-                <Grid item xs={12}>
-                  <FormHelperText error>{errors.submit}</FormHelperText>
-                </Grid>
-              )}
-              <Grid item xs={12}>
-                <AnimateButton>
-                  <Button disableElevation disabled={isSubmitting} fullWidth size="large" type="submit" variant="contained" color="primary">
-                    Login
-                  </Button>
-                </AnimateButton>
-              </Grid>
-              <Grid item xs={12}>
-                <Divider>
-                  <Typography variant="caption"> Login with</Typography>
-                </Divider>
-              </Grid>
-              <Grid item xs={12}>
-                <FirebaseSocial />
-              </Grid>
+        <Box
+          sx={{
+            backgroundImage: "url('/free/logo1.svg')",
+            width: '50px',
+            height: '50px',
+            m: '5% auto 0'
+          }}
+        ></Box>
+        <Box
+          sx={{
+            backgroundImage: "url('/free/logo2.svg')",
+            width: '150px',
+            height: '30px',
+            m: '1% auto 0'
+          }}
+        ></Box>
+        <Typography
+          variant="subtitle1"
+          align="center"
+          style={{
+            color: 'white',
+            fontSize: '10px',
+            margin: '4px auto 0'
+          }}
+        >
+          Vincent Client Login
+        </Typography>
+      </Container>
+      <Container
+        id="login"
+        style={{
+          position: 'relative',
+          padding: '1rem',
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
+          minHeight: '100vh',
+          maxWidth: 'sm',
+          zIndex: 10
+        }}
+      >
+        <Box
+          style={{
+            padding: '1.5rem',
+            background: 'white',
+            borderRadius: '0.75rem',
+            boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.1)'
+          }}
+        >
+          <Grid container direction="column" spacing={2}>
+            <Grid item>
+              <Box
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  margin: '3px auto 12px'
+                }}
+              >
+                <img style={{ height: '50px', width: '50px' }} src="/free/login_encrypted.svg" alt="" />
+              </Box>
             </Grid>
-          </form>
-        )}
-      </Formik>
-    </>
+            <Grid item>
+              <form
+                onSubmit={handleSubmit(onSubmit)}
+                style={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  gap: '1rem',
+                  justifyContent: 'center'
+                }}
+              >
+                <TextField
+                  id="username"
+                  name="username"
+                  {...register('username', {
+                    required: 'Username is required.'
+                  })}
+                  error={!!errors.username}
+                  helperText={errors.username?.message}
+                  label="Username"
+                  variant="outlined"
+                  size="small"
+                  style={{ background: 'white' }}
+                />
+                <TextField
+                  id="password"
+                  name="password"
+                  {...register('password', {
+                    required: 'Password is required.'
+                  })}
+                  error={!!errors.password}
+                  helperText={errors.password?.message}
+                  label="Password"
+                  variant="outlined"
+                  type="password"
+                  size="small"
+                  style={{ background: 'white' }}
+                />
+                <Button
+                  style={{
+                    marginTop: '1rem',
+                    borderRadius: '0.25rem',
+                    background: 'linear-gradient(to right, #gray-400, #gray-600)',
+                    color: 'white'
+                  }}
+                  type="submit"
+                  variant="contained"
+                  fullWidth
+                >
+                  Login
+                </Button>
+              </form>
+            </Grid>
+            <Grid item>
+              <Box
+                style={{
+                  display: 'flex',
+                  gap: '1rem',
+                  justifyContent: 'center'
+                }}
+              >
+                <ReactCountryFlag
+                  countryCode="KR"
+                  style={{ height: '2em', width: '2em', boxShadow: '0px 2px 6px rgba(0, 0, 0, 0.1)' }}
+                  svg
+                />
+                <ReactCountryFlag
+                  countryCode="US"
+                  style={{ height: '2em', width: '2em', boxShadow: '0px 2px 6px rgba(0, 0, 0, 0.1)' }}
+                  svg
+                />
+                <ReactCountryFlag
+                  countryCode="CN"
+                  style={{ height: '2em', width: '2em', boxShadow: '0px 2px 6px rgba(0, 0, 0, 0.1)' }}
+                  svg
+                />
+                <ReactCountryFlag
+                  countryCode="JP"
+                  style={{ height: '2em', width: '2em', boxShadow: '0px 2px 6px rgba(0, 0, 0, 0.1)' }}
+                  svg
+                />
+              </Box>
+            </Grid>
+          </Grid>
+          <Typography variant="body2" align="center" style={{ color: '#888888', fontSize: '0.75rem', marginTop: '1rem' }}>
+            Vincent @2024
+          </Typography>
+        </Box>
+      </Container>
+    </Box>
   );
-};
+}
 
 export default AuthLogin;

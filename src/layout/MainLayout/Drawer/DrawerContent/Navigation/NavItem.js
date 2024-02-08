@@ -2,15 +2,9 @@ import PropTypes from 'prop-types';
 import { forwardRef, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-
-// material-ui
 import { useTheme } from '@mui/material/styles';
 import { Avatar, Chip, ListItemButton, ListItemIcon, ListItemText, Typography } from '@mui/material';
-
-// project import
 import { activeItem } from 'store/reducers/menu';
-
-// ==============================|| NAVIGATION - LIST ITEM ||============================== //
 
 const NavItem = ({ item, level }) => {
   const theme = useTheme();
@@ -37,7 +31,6 @@ const NavItem = ({ item, level }) => {
   const itemIcon = item.icon ? <Icon style={{ fontSize: drawerOpen ? '1rem' : '1.25rem' }} /> : false;
 
   const isSelected = openItem.findIndex((id) => id === item.id) > -1;
-  // active menu item on page load
   useEffect(() => {
     if (pathname.includes(item.url)) {
       dispatch(activeItem({ openItem: [item.id] }));

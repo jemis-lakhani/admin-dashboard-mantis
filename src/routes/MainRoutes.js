@@ -1,22 +1,27 @@
 import { lazy } from 'react';
-
-// project import
 import Loadable from 'components/Loadable';
 import MainLayout from 'layout/MainLayout';
 
-// render - dashboard
 const DashboardDefault = Loadable(lazy(() => import('pages/dashboard')));
 
-// render - sample page
-const SamplePage = Loadable(lazy(() => import('pages/extra-pages/SamplePage')));
-
-// render - utilities
-const Typography = Loadable(lazy(() => import('pages/components-overview/Typography')));
-const Color = Loadable(lazy(() => import('pages/components-overview/Color')));
-const Shadow = Loadable(lazy(() => import('pages/components-overview/Shadow')));
-const AntIcons = Loadable(lazy(() => import('pages/components-overview/AntIcons')));
-
-// ==============================|| MAIN ROUTING ||============================== //
+const MemberList = Loadable(lazy(() => import('pages/components-overview/MemberManage/MemberList')));
+const AccessorList = Loadable(lazy(() => import('pages/components-overview/MemberManage/AccessorList')));
+const MemberNote = Loadable(lazy(() => import('pages/components-overview/MemberManage/MemberNote')));
+const MiniGames = Loadable(lazy(() => import('pages/components-overview/GameManage/MiniGames')));
+const Sports = Loadable(lazy(() => import('pages/components-overview/BettingManage/Sports')));
+const Casino = Loadable(lazy(() => import('pages/components-overview/BettingManage/Casino')));
+const Slot = Loadable(lazy(() => import('pages/components-overview/BettingManage/Slot')));
+const MiniGame = Loadable(lazy(() => import('pages/components-overview/BettingManage/MiniGame')));
+const DepositList = Loadable(lazy(() => import('pages/components-overview/InOutManage/DepositList')));
+const WithdrawalList = Loadable(lazy(() => import('pages/components-overview/InOutManage/WithdrawalList')));
+const QAList = Loadable(lazy(() => import('pages/components-overview/BulletinManage/QAList')));
+const Notice = Loadable(lazy(() => import('pages/components-overview/BulletinManage/Notice')));
+const DailyStatistics = Loadable(lazy(() => import('pages/components-overview/Statistics/DailyStatistics')));
+const MonthlyStatistics = Loadable(lazy(() => import('pages/components-overview/Statistics/MonthlyStatistics')));
+const PartnerList = Loadable(lazy(() => import('pages/components-overview/PartnerManage/PartnerList')));
+const PartnerRegistration = Loadable(lazy(() => import('pages/components-overview/PartnerManage/PartnerRegistration')));
+const Preferences = Loadable(lazy(() => import('pages/components-overview/Preferences')));
+const Administrator = Loadable(lazy(() => import('pages/components-overview/Administrator')));
 
 const MainRoutes = {
   path: '/',
@@ -27,33 +32,76 @@ const MainRoutes = {
       element: <DashboardDefault />
     },
     {
-      path: 'color',
-      element: <Color />
+      path: '/member-list',
+      element: <MemberList />
     },
     {
-      path: 'dashboard',
-      children: [
-        {
-          path: 'default',
-          element: <DashboardDefault />
-        }
-      ]
+      path: '/accessor-list',
+      element: <AccessorList />
     },
     {
-      path: 'sample-page',
-      element: <SamplePage />
+      path: '/member-note',
+      element: <MemberNote />
     },
     {
-      path: 'shadow',
-      element: <Shadow />
+      path: '/mini-games',
+      element: <MiniGames />
     },
     {
-      path: 'typography',
-      element: <Typography />
+      path: '/sports',
+      element: <Sports />
     },
     {
-      path: 'icons/ant',
-      element: <AntIcons />
+      path: '/casino',
+      element: <Casino />
+    },
+    {
+      path: '/slot',
+      element: <Slot />
+    },
+    {
+      path: '/mini-game',
+      element: <MiniGame />
+    },
+    {
+      path: '/deposit-list',
+      element: <DepositList />
+    },
+    {
+      path: '/withdrawal-list',
+      element: <WithdrawalList />
+    },
+    {
+      path: '/qa-list',
+      element: <QAList />
+    },
+    {
+      path: '/notice',
+      element: <Notice />
+    },
+    {
+      path: '/daily-statistics',
+      element: <DailyStatistics />
+    },
+    {
+      path: '/monthly-statistics',
+      element: <MonthlyStatistics />
+    },
+    {
+      path: '/partner-list',
+      element: <PartnerList />
+    },
+    {
+      path: '/partner-registration',
+      element: <PartnerRegistration />
+    },
+    {
+      path: '/preferences',
+      element: <Preferences />
+    },
+    {
+      path: '/administrator',
+      element: <Administrator />
     }
   ]
 };

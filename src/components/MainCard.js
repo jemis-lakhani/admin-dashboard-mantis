@@ -1,20 +1,11 @@
 import PropTypes from 'prop-types';
 import { forwardRef } from 'react';
-
-// material-ui
 import { useTheme } from '@mui/material/styles';
-import { Card, CardContent, CardHeader, Divider, Typography } from '@mui/material';
-
-// project import
-import Highlighter from './third-party/Highlighter';
-
-// header style
+import { Card, CardContent, CardHeader, Typography } from '@mui/material';
 const headerSX = {
   p: 2.5,
   '& .MuiCardHeader-action': { m: '0px auto', alignSelf: 'center' }
 };
-
-// ==============================|| CUSTOM - MAIN CARD ||============================== //
 
 const MainCard = forwardRef(
   (
@@ -69,16 +60,6 @@ const MainCard = forwardRef(
         {/* card content */}
         {content && <CardContent sx={contentSX}>{children}</CardContent>}
         {!content && children}
-
-        {/* card footer - clipboard & highlighter  */}
-        {codeHighlight && (
-          <>
-            <Divider sx={{ borderStyle: 'dashed' }} />
-            <Highlighter codeHighlight={codeHighlight} main>
-              {children}
-            </Highlighter>
-          </>
-        )}
       </Card>
     );
   }

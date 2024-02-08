@@ -11,7 +11,8 @@ import ExpandLess from '@mui/icons-material/ExpandLess';
 import ExpandMore from '@mui/icons-material/ExpandMore';
 import { useSelector } from 'react-redux';
 import { useTheme } from '@mui/material/styles';
-import { useState } from 'react';
+import { useLocation } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 
 const textColor = 'text.primary';
 const iconSelectedColor = 'white';
@@ -22,6 +23,8 @@ const NavGroup = ({ item }) => {
   const theme = useTheme();
   const { drawerOpen } = useSelector((state) => state.menu);
   const [open, setOpen] = useState(false);
+  const [isChildActive, setisChildActive] = useState(false);
+  const { pathname } = useLocation();
 
   const Icon = item.icon;
   const itemIcon = item.icon ? <Icon style={{ fontSize: drawerOpen ? '1rem' : '1.25rem' }} /> : false;
@@ -29,6 +32,15 @@ const NavGroup = ({ item }) => {
   const handleClick = () => {
     setOpen(!open);
   };
+
+  useEffect(() => {
+    const childrenUrls = item.children.map((child) => child?.url);
+    if (childrenUrls.includes(pathname)) {
+      setisChildActive(true);
+    } else {
+      setisChildActive(false);
+    }
+  }, [pathname]);
 
   const navCollapse = item.children?.map((menuItem) => {
     switch (menuItem.type) {
@@ -63,7 +75,7 @@ const NavGroup = ({ item }) => {
           zIndex: 1201,
           justifyContent: 'space-between',
           ...(drawerOpen &&
-            open && {
+            isChildActive && {
               ...{
                 bgcolor: 'primary.main',
                 color: iconSelectedColor,
@@ -79,7 +91,7 @@ const NavGroup = ({ item }) => {
           <ListItemIcon
             sx={{
               minWidth: 28,
-              color: open ? iconSelectedColor : textColor,
+              color: isChildActive ? iconSelectedColor : textColor,
               ...(!drawerOpen && {
                 borderRadius: 1.5,
                 width: 36,
@@ -91,7 +103,7 @@ const NavGroup = ({ item }) => {
                 }
               }),
               ...(!drawerOpen &&
-                open && {
+                isChildActive && {
                   bgcolor: 'primary.lighter',
                   '&:hover': {
                     bgcolor: 'primary.lighter'
@@ -104,7 +116,7 @@ const NavGroup = ({ item }) => {
         )}
         <ListItemText
           primary={
-            <Typography variant="h6" sx={{ color: open ? iconSelectedColor : textColor }}>
+            <Typography variant="h6" sx={{ color: isChildActive ? iconSelectedColor : textColor }}>
               {item.title}
             </Typography>
           }

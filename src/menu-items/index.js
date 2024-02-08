@@ -166,14 +166,14 @@ const preferences = {
   title: 'Preferences',
   type: 'single-item',
   icon: FontSizeOutlined,
-  url: '/color'
+  url: '/icons/ant'
 };
 const administrator = {
   id: 'administrator',
   title: 'Administrator',
   type: 'single-item',
   icon: FontSizeOutlined,
-  url: '/typography'
+  url: '/shadow'
 };
 
 const menuItems = {

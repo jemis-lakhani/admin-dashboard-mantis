@@ -18,12 +18,13 @@ function AuthLogin() {
     <Box>
       <Container
         sx={{
-          background: 'linear-gradient(to right, #fuchsia-300, #sky-500)',
           height: '40%',
-          maxWidth: '100%',
+          maxWidth: '100% !important',
           position: 'absolute',
           inset: 0,
-          backgroundImage: "url('/bg.png')"
+          backgroundImage: "url('/bg.png')",
+          backgroundSize: 'cover',
+          backgroundPosition: 'center'
         }}
       >
         <Box

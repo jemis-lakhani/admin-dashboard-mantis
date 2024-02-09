@@ -1,10 +1,26 @@
 import { Box, Typography } from '@mui/material';
+import axios from 'axios';
+
+// project import
 import NavGroup from './NavGroup';
 import NavItem from './NavItem';
-import menuItem from 'menu-items';
+import { useEffect, useState } from 'react';
 
 const Navigation = () => {
-  const navGroups = menuItem.items.map((item) => {
+  const [menuItems, setMenuItems] = useState([]);
+
+  useEffect(() => {
+    const getMenuItems = async () => {
+      try {
+        const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}menu/list`);
+        console.log(response.data);
+        setMenuItems(response.data);
+      } catch (error) {}
+    };
+    getMenuItems();
+  }, []);
+
+  const navGroups = menuItems.map((item) => {
     switch (item.type) {
       case 'group':
         return <NavGroup key={item.id} item={item} />;

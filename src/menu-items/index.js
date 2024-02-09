@@ -1,7 +1,4 @@
-// project import
 import { FontSizeOutlined } from '@ant-design/icons';
-
-// ==============================|| MENU ITEMS ||============================== //
 
 const memberManage = {
   id: 'member-manage',

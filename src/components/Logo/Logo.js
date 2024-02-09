@@ -1,8 +1,4 @@
-import { useTheme } from '@mui/material/styles';
-
 const Logo = () => {
-  const theme = useTheme();
-
   return (
     <>
       <svg viewBox="0 0 238 45" height="35" width="118" xmlns="http://www.w3.org/2000/svg">

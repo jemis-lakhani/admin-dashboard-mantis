@@ -16,14 +16,12 @@ const MainLayout = () => {
 
   const { drawerOpen } = useSelector((state) => state.menu);
 
-  // drawer toggler
   const [open, setOpen] = useState(drawerOpen);
   const handleDrawerToggle = () => {
     setOpen(!open);
     dispatch(openDrawer({ drawerOpen: !open }));
   };
 
-  // set media wise responsive drawer
   useEffect(() => {
     setOpen(!matchDownLG);
     dispatch(openDrawer({ drawerOpen: !matchDownLG }));
@@ -40,7 +38,7 @@ const MainLayout = () => {
     <Box sx={{ display: 'flex', width: '100%' }}>
       <Header open={open} handleDrawerToggle={handleDrawerToggle} />
       <Drawer open={open} handleDrawerToggle={handleDrawerToggle} />
-      <Box component="main" sx={{ width: '100%', marginTop: '61px', flexGrow: 1, p: { xs: 2, sm: 3 } }}>
+      <Box component="main" sx={{ width: '100%', mt: '61px', flexGrow: 1, p: { xs: 2, sm: 3 } }}>
         <Breadcrumbs navigation={navigation} title />
         <Box>
           <Outlet />

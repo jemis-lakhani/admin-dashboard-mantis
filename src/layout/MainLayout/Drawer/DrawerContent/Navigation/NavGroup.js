@@ -73,7 +73,7 @@ const NavGroup = ({ item }) => {
             })
         }}
       >
-        {itemIcon && (
+        {/* {itemIcon && (
           <ListItemIcon
             sx={{
               minWidth: 28,
@@ -99,7 +99,7 @@ const NavGroup = ({ item }) => {
           >
             {itemIcon}
           </ListItemIcon>
-        )}
+        )} */}
         <ListItemText
           primary={
             <Typography variant="h6" sx={{ color: isChildActive ? iconSelectedColor : textColor }}>

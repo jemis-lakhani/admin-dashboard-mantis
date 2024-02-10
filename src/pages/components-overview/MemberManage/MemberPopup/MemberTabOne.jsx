@@ -129,7 +129,7 @@ const MemberTabOne = () => {
                       <Typography variant="h5">Title</Typography>
                       <FormControl>
                         <RadioGroup row aria-labelledby="demo-row-radio-buttons-group-label" name="row-radio-buttons-group">
-                          <FormControlLabel value="radio1" control={<Radio />} label="radio1" />
+                          <FormControlLabel value="radio1" control={<Radio checked />} label="radio1" />
                           <FormControlLabel value="radio2" control={<Radio />} label="radio2" />
                         </RadioGroup>
                         <InputComponent sx={{ width: '250px' }}></InputComponent>
@@ -171,7 +171,7 @@ const MemberTabOne = () => {
                       <Typography variant="h5">Title</Typography>
                       <FormControl>
                         <RadioGroup row aria-labelledby="demo-row-radio-buttons-group-label" name="row-radio-buttons-group">
-                          <FormControlLabel value="radio1" control={<Radio />} label="radio1" />
+                          <FormControlLabel value="radio1" control={<Radio checked />} label="radio1" />
                           <FormControlLabel value="radio2" control={<Radio />} label="radio2" />
                         </RadioGroup>
                         <InputComponent sx={{ width: '250px' }}></InputComponent>

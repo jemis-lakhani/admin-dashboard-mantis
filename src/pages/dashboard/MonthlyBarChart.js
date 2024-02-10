@@ -41,13 +41,11 @@ const barChartOptions = {
   }
 };
 
-// ==============================|| MONTHLY BAR CHART ||============================== //
-
 const MonthlyBarChart = () => {
   const theme = useTheme();
 
   const { primary, secondary } = theme.palette.text;
-  const info = theme.palette.info.light;
+  const info = theme.palette.primary.main;
 
   const [series] = useState([
     {

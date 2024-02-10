@@ -37,10 +37,6 @@ const Breadcrumbs = ({ navigation, title, ...others }) => {
     });
   });
 
-  if (location.pathname === '/') {
-    location.pathname = '/';
-  }
-
   let mainContent;
   let itemContent;
   let breadcrumbContent = <Typography />;

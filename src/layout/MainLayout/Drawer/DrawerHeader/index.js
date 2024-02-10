@@ -9,7 +9,7 @@ const DrawerHeader = ({ open }) => {
 
   return (
     <DrawerHeaderStyled theme={theme} open={open}>
-      <Stack direction="column" spacing={2} alignItems="center" sx={{ pt: '2em' }}>
+      <Stack direction="column" spacing={2} alignItems="center">
         <Logo />
         <span>James(manager)</span>
       </Stack>

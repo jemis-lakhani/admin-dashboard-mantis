@@ -11,9 +11,9 @@ const DataInformation = ({ data, matchesLg }) => {
     { label: 'B', color: theme.palette.secondary.light, value: '4,00,000' }
   ];
 
-  const dataItems = items?.map((item) => {
+  const dataItems = items?.map((item, index) => {
     return (
-      <Grid container sx={{ alignItems: 'center', margin: '0px', width: 'auto !important' }}>
+      <Grid key={index | item?.label} container sx={{ alignItems: 'center', margin: '0px', width: 'auto !important' }}>
         <Chip variant="combined" label={item?.label} size="small" sx={{ backgroundColor: item?.color }} />
         <Typography variant="h6" sx={{ color: '#707070', fontWeight: '700', marginTop: '0.5px', marginLeft: '0.5rem' }}>
           {item?.value}

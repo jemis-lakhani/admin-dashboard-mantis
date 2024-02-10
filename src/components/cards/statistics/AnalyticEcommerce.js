@@ -24,10 +24,11 @@ const icons = {
   connect: <ConnectWithoutContactIcon />
 };
 
-// ==============================|| STATISTICS - ECOMMERCE CARD  ||============================== //
-
 const AnalyticEcommerce = ({ color, title, subtitle, icon, isLoss, count, percentage }) => {
   const theme = useTheme();
+  const error = theme.palette.error.main;
+  const success = theme.palette.success.main;
+  const textSecondary = theme.palette.secondary.main;
   return (
     <MainCard contentSX={{ p: 2.25 }} sx={{ position: 'relative' }}>
       <Stack spacing={0.5}>
@@ -35,11 +36,11 @@ const AnalyticEcommerce = ({ color, title, subtitle, icon, isLoss, count, percen
           {icons[icon]}
         </Avatar>
         <Grid sx={{ position: 'absolute', top: '1rem', right: '1rem', margin: '0 !important' }}>
-          <Chip variant="combined" color={color} label="Today" size="small" />
+          <Chip variant="combined" color={color} label="Today" size="small" sx={{ color: '#FFFFFF' }} />
         </Grid>
         <Grid container alignItems="center" justifyContent="space-between" marginTop="1rem !important">
           <Grid alignItems="center" justifyContent="space-between" sx={{ flexDirection: 'column' }}>
-            <Typography variant="h6" sx={{ color: '#707070', fontWeight: '700' }}>
+            <Typography variant="h6" sx={{ color: textSecondary, fontWeight: '700' }}>
               {title}
             </Typography>
             <Typography variant="h3" color="inherit" fontWeight="700">
@@ -47,10 +48,10 @@ const AnalyticEcommerce = ({ color, title, subtitle, icon, isLoss, count, percen
             </Typography>
           </Grid>
           <Grid alignItems="center" justifyContent="space-between" sx={{ flexDirection: 'column' }}>
-            <Typography variant="h6" sx={{ color: '#707070', fontWeight: '700' }}>
+            <Typography variant="h6" sx={{ color: textSecondary, fontWeight: '700' }}>
               {subtitle}
             </Typography>
-            <Typography variant="h3" color={isLoss ? theme.palette.error.main : theme.palette.success.main} fontWeight="700">
+            <Typography variant="h3" color={isLoss ? error : success} fontWeight="700">
               {isLoss ? -percentage : percentage}%
             </Typography>
           </Grid>

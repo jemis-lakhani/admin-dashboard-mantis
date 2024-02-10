@@ -31,6 +31,7 @@ const NavGroup = ({ item }) => {
     } else {
       setisChildActive(false);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pathname]);
 
   const navCollapse = item.children?.map((menuItem) => {
@@ -97,7 +98,7 @@ const NavGroup = ({ item }) => {
                 })
             }}
           >
-            <span class="material-symbols-rounded">{itemIcon}</span>
+            <span className="material-symbols-rounded">{itemIcon}</span>
           </ListItemIcon>
         )}
         <ListItemText

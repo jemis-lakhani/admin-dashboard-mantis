@@ -32,9 +32,9 @@ const AccountStatistics = ({ data, matchesLg }) => {
     { icon: 'user', color: theme.palette.secondary.main, value: '4,00,000' }
   ];
 
-  const dataItems = items?.map((item) => {
+  const dataItems = items?.map((item, index) => {
     return (
-      <Grid container sx={{ alignItems: 'center', margin: '0px', width: 'auto !important' }}>
+      <Grid key={index + item?.value} container sx={{ alignItems: 'center', margin: '0px', width: 'auto !important' }}>
         <Typography
           variant="h6"
           sx={{
@@ -47,7 +47,7 @@ const AccountStatistics = ({ data, matchesLg }) => {
             color: '#FFFFFF'
           }}
         >
-          <Avatar variant="rounded" sx={{ backgroundColor: 'transparent', marginRight: '2px', height: '1rem', width: '1rem' }}>
+          <Avatar variant="rounded" sx={{ backgroundColor: 'transparent', mr: '2px', height: '1rem', width: '1rem' }}>
             {icons[item?.icon]}
           </Avatar>
           {item?.value}

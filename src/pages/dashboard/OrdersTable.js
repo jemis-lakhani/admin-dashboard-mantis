@@ -152,14 +152,12 @@ OrderStatus.propTypes = {
   status: PropTypes.number
 };
 
-// ==============================|| ORDER TABLE ||============================== //
-
 export default function OrderTable() {
   const [order] = useState('asc');
   const [orderBy] = useState('trackingNo');
   const [selected] = useState([]);
 
-  const isSelected = (trackingNo) => selected.indexOf(trackingNo) !== -1;
+  const isSelected = (trackingNo) => selected?.indexOf(trackingNo) !== -1;
 
   return (
     <Box>

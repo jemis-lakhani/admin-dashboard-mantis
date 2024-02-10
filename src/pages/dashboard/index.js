@@ -67,8 +67,6 @@ const status = [
   }
 ];
 
-// ==============================|| DASHBOARD - DEFAULT ||============================== //
-
 const DashboardDefault = () => {
   const [value, setValue] = useState('today');
   const [slot, setSlot] = useState('week');
@@ -86,7 +84,7 @@ const DashboardDefault = () => {
           icon="visitors"
           count="4,42,236"
           percentage={44}
-          color="warning"
+          color="primary"
           extra="35,000"
         />
       </Grid>
@@ -98,7 +96,7 @@ const DashboardDefault = () => {
           count="78,250"
           percentage={12}
           isLoss
-          color="warning"
+          color="primary"
           extra="8,900"
         />
       </Grid>
@@ -109,7 +107,7 @@ const DashboardDefault = () => {
           icon="deposit"
           count="18,800"
           percentage={24}
-          color="warning"
+          color="primary"
           extra="1,943"
         />
       </Grid>
@@ -120,7 +118,7 @@ const DashboardDefault = () => {
           icon="send"
           count="$35,078"
           percentage={14}
-          color="warning"
+          color="primary"
           extra="$20,395"
         />
       </Grid>
@@ -131,7 +129,7 @@ const DashboardDefault = () => {
           icon="money"
           count="$35,078"
           percentage={4}
-          color="warning"
+          color="primary"
           extra="$20,395"
         />
       </Grid>
@@ -143,7 +141,7 @@ const DashboardDefault = () => {
           count="$35,078"
           percentage={62}
           isLoss
-          color="warning"
+          color="primary"
           extra="$20,395"
         />
       </Grid>
@@ -165,7 +163,7 @@ const DashboardDefault = () => {
           icon="connect"
           count="$35,078"
           percentage={14}
-          color="warning"
+          color="primary"
           extra="$20,395"
         />
       </Grid>

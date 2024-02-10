@@ -5,10 +5,11 @@ import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
 import TableRow from '@mui/material/TableRow';
 import { Box, Avatar } from '@mui/material';
-import { Tabs } from '@mui/base/Tabs';
-import { TabsList } from '@mui/base/TabsList';
-import { TabPanel } from '@mui/base/TabPanel';
-import { Tab, tabClasses } from '@mui/base/Tab';
+import Tabs from '@mui/base/Tabs';
+import TabsList from '@mui/base/TabsList';
+import TabPanel from '@mui/base/TabPanel';
+import Tab from '@mui/base/Tab';
+import tabClasses from '@mui/base/Tab';
 import MemberTabOne from './MemberTabOne';
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
 import CancelIcon from '@mui/icons-material/Cancel';
@@ -61,12 +62,13 @@ const modalStyle = {
   left: '50%',
   transform: 'translate(-50%, -50%)',
   width: '98%',
-  height: '98%',
+  height: '90%',
   overflow: 'scroll',
   bgcolor: 'background.paper',
   border: '2px solid #000',
   boxShadow: 24,
-  p: 4
+  p: 4,
+  mt: 4
 };
 
 const MemberPopup = ({ handleClose }) => {

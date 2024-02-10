@@ -85,7 +85,7 @@ const NavItem = ({ item, level }) => {
               })
           }}
         >
-          <span class="material-symbols-rounded">{itemIcon}</span>
+          <span className="material-symbols-rounded">{itemIcon}</span>
         </ListItemIcon>
       )}
       {(drawerOpen || (!drawerOpen && level !== 1)) && (

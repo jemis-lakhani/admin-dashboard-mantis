@@ -24,7 +24,7 @@ import { Button, Grid } from '@mui/material';
 import MailIcon from '@mui/icons-material/Mail';
 import { useState } from 'react';
 import Modal from '@mui/material/Modal';
-import MemberPopup from './MemberPopup/index';
+import MemberPopup from './MemberPopup';
 
 function generateRandomName(length) {
   const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';

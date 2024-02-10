@@ -2,12 +2,11 @@ import PropTypes from 'prop-types';
 import { forwardRef, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { useTheme } from '@mui/material/styles';
 import { Avatar, Chip, ListItemButton, ListItemIcon, ListItemText, Typography } from '@mui/material';
 import { activeItem } from 'store/reducers/menu';
+import CircleIcon from '@mui/icons-material/Circle';
 
 const NavItem = ({ item, level }) => {
-  const theme = useTheme();
   const dispatch = useDispatch();
   const { pathname } = useLocation();
 
@@ -27,8 +26,7 @@ const NavItem = ({ item, level }) => {
     dispatch(activeItem({ openItem: [id] }));
   };
 
-  const Icon = item.icon;
-  const itemIcon = item.icon ? <Icon style={{ fontSize: drawerOpen ? '1rem' : '1.25rem' }} /> : false;
+  const itemIcon = item.icon ? item.icon : false;
 
   const isSelected = openItem.findIndex((id) => id === item.id) > -1;
   useEffect(() => {
@@ -49,12 +47,12 @@ const NavItem = ({ item, level }) => {
       selected={isSelected}
       sx={{
         zIndex: 1201,
+        borderRadius: '4px',
         justifyContent: 'space-between',
         pl: drawerOpen && !itemIcon ? `${level * 38}px` : 2,
         py: !drawerOpen && level === 1 ? 1.25 : 1,
         ...(drawerOpen && {
           '&.Mui-selected': {
-            borderRight: `2px solid ${theme.palette.primary.main}`,
             backgroundColor: 'transparent',
             '&:hover': {
               backgroundColor: 'primary.lighter'
@@ -63,7 +61,7 @@ const NavItem = ({ item, level }) => {
         })
       }}
     >
-      {/* {itemIcon && (
+      {itemIcon && (
         <ListItemIcon
           sx={{
             minWidth: 28,
@@ -87,13 +85,19 @@ const NavItem = ({ item, level }) => {
               })
           }}
         >
-          {itemIcon}
+          <span class="material-symbols-rounded">{itemIcon}</span>
         </ListItemIcon>
-      )} */}
+      )}
       {(drawerOpen || (!drawerOpen && level !== 1)) && (
         <ListItemText
           primary={
-            <Typography variant="h6" sx={{ color: isSelected ? iconSelectedColor : textColor, marginLeft: itemIcon ? '0px' : '10px' }}>
+            <Typography
+              variant="h6"
+              sx={{ position: 'relative', color: isSelected ? iconSelectedColor : textColor, marginLeft: itemIcon ? '0px' : '10px' }}
+            >
+              {!itemIcon && isSelected && (
+                <CircleIcon sx={{ height: 12, width: 12, position: 'absolute', left: '-1.5rem', top: '0.25rem' }} />
+              )}
               {item.title}
             </Typography>
           }

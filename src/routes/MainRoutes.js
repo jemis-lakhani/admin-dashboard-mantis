@@ -1,6 +1,7 @@
 import { lazy } from 'react';
 import Loadable from 'components/Loadable';
 import MainLayout from 'layout/MainLayout';
+import { Navigate } from 'react-router-dom';
 
 const DashboardDefault = Loadable(lazy(() => import('pages/dashboard')));
 
@@ -32,67 +33,95 @@ const MainRoutes = {
       element: <DashboardDefault />
     },
     {
-      path: '/member-list',
+      path: '/memberManage',
+      element: <Navigate to="/memberManage/memberList" />
+    },
+    {
+      path: '/memberManage/memberList',
       element: <MemberList />
     },
     {
-      path: '/accessor-list',
+      path: '/memberManage/accessorList',
       element: <AccessorList />
     },
     {
-      path: '/member-note',
+      path: '/memberManage/memberNote',
       element: <MemberNote />
     },
     {
-      path: '/mini-games',
+      path: '/gameManage',
+      element: <Navigate to="/gameManage/miniGames" />
+    },
+    {
+      path: '/gameManage/miniGames',
       element: <MiniGames />
     },
     {
-      path: '/sports',
+      path: '/bettingManage',
+      element: <Navigate to="/bettingManage/sports" />
+    },
+    {
+      path: '/bettingManage/sports',
       element: <Sports />
     },
     {
-      path: '/casino',
+      path: '/bettingManage/casino',
       element: <Casino />
     },
     {
-      path: '/slot',
+      path: '/bettingManage/slot',
       element: <Slot />
     },
     {
-      path: '/mini-game',
+      path: '/bettingManage/miniGame',
       element: <MiniGame />
     },
     {
-      path: '/deposit-list',
+      path: '/inOutManage',
+      element: <Navigate to="/inOutManage/depositList" />
+    },
+    {
+      path: '/inOutManage/depositList',
       element: <DepositList />
     },
     {
-      path: '/withdrawal-list',
+      path: '/inOutManage/withdrawalList',
       element: <WithdrawalList />
     },
     {
-      path: '/qa-list',
+      path: '/bulletinBoardsManage',
+      element: <Navigate to="/bulletinBoardsManage/qaList" />
+    },
+    {
+      path: '/bulletinBoardsManage/qaList',
       element: <QAList />
     },
     {
-      path: '/notice',
+      path: '/bulletinBoardsManage/notice',
       element: <Notice />
     },
     {
-      path: '/daily-statistics',
+      path: '/statistics',
+      element: <Navigate to="/statistics/dailyStatistics" />
+    },
+    {
+      path: '/statistics/dailyStatistics',
       element: <DailyStatistics />
     },
     {
-      path: '/monthly-statistics',
+      path: '/statistics/monthlyStatistics',
       element: <MonthlyStatistics />
     },
     {
-      path: '/partner-list',
+      path: '/partnerManagement',
+      element: <Navigate to="/partnerManagement/partnerList" />
+    },
+    {
+      path: '/partnerManagement/partnerList',
       element: <PartnerList />
     },
     {
-      path: '/partner-registration',
+      path: '/partnerManagement/partnerRegistration',
       element: <PartnerRegistration />
     },
     {

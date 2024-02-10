@@ -18,8 +18,7 @@ const NavGroup = ({ item }) => {
   const [isChildActive, setisChildActive] = useState(false);
   const { pathname } = useLocation();
 
-  const Icon = item.icon;
-  const itemIcon = item.icon ? <Icon style={{ fontSize: drawerOpen ? '1rem' : '1.25rem' }} /> : false;
+  const itemIcon = item.icon ? item.icon : false;
 
   const handleClick = () => {
     setOpen(!open);
@@ -59,6 +58,7 @@ const NavGroup = ({ item }) => {
         onClick={handleClick}
         sx={{
           zIndex: 1201,
+          borderRadius: '4px',
           justifyContent: 'space-between',
           ...(drawerOpen &&
             isChildActive && {
@@ -73,7 +73,7 @@ const NavGroup = ({ item }) => {
             })
         }}
       >
-        {/* {itemIcon && (
+        {itemIcon && (
           <ListItemIcon
             sx={{
               minWidth: 28,
@@ -97,9 +97,9 @@ const NavGroup = ({ item }) => {
                 })
             }}
           >
-            {itemIcon}
+            <span class="material-symbols-rounded">{itemIcon}</span>
           </ListItemIcon>
-        )} */}
+        )}
         <ListItemText
           primary={
             <Typography variant="h6" sx={{ color: isChildActive ? iconSelectedColor : textColor }}>

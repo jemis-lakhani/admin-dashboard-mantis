@@ -5,9 +5,9 @@ import { useTheme } from '@mui/material/styles';
 import { Box, useMediaQuery } from '@mui/material';
 import Drawer from './Drawer';
 import Header from './Header';
-import navigation from 'menu-items';
 import Breadcrumbs from 'components/@extended/Breadcrumbs';
-import { openDrawer } from 'store/reducers/menu';
+import { menuItems, openDrawer } from 'store/reducers/menu';
+import axios from 'axios';
 
 const MainLayout = () => {
   const theme = useTheme();
@@ -21,6 +21,18 @@ const MainLayout = () => {
     setOpen(!open);
     dispatch(openDrawer({ drawerOpen: !open }));
   };
+
+  const [navigation, setNavigation] = useState([]);
+  useEffect(() => {
+    const getMenuItems = async () => {
+      try {
+        const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}menu/list`);
+        dispatch(menuItems({ menuItems: response.data }));
+        setNavigation(response.data);
+      } catch (error) {}
+    };
+    getMenuItems();
+  }, []);
 
   useEffect(() => {
     setOpen(!matchDownLG);

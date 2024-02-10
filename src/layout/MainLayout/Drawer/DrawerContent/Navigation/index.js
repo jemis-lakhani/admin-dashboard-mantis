@@ -1,26 +1,14 @@
 import { Box, Typography } from '@mui/material';
-import axios from 'axios';
 
 // project import
 import NavGroup from './NavGroup';
 import NavItem from './NavItem';
-import { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 
 const Navigation = () => {
-  const [menuItems, setMenuItems] = useState([]);
+  const menuItems = useSelector((state) => state.menu.menuItems);
 
-  useEffect(() => {
-    const getMenuItems = async () => {
-      try {
-        const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}menu/list`);
-        console.log(response.data);
-        setMenuItems(response.data);
-      } catch (error) {}
-    };
-    getMenuItems();
-  }, []);
-
-  const navGroups = menuItems.map((item) => {
+  const navGroups = menuItems?.map((item) => {
     switch (item.type) {
       case 'group':
         return <NavGroup key={item.id} item={item} />;

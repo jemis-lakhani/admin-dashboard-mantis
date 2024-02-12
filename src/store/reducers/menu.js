@@ -1,7 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  notificationsCount: 0,
+  notifications: [],
+  notificationCount: 0,
   menuItems: [],
   openItem: ['dashboard'],
   defaultId: 'dashboard',
@@ -14,8 +15,9 @@ const menu = createSlice({
   name: 'menu',
   initialState,
   reducers: {
-    notificationsCount(state, action) {
-      state.notificationsCount = action.payload.notificationsCount;
+    notifications(state, action) {
+      state.notifications = action.payload.notifications;
+      state.notificationCount = action.payload.notifications.length;
     },
     menuItems(state, action) {
       state.menuItems = action.payload.menuItems;
@@ -40,4 +42,4 @@ const menu = createSlice({
 
 export default menu.reducer;
 
-export const { notificationsCount, menuItems, activeItem, activeComponent, openDrawer, openComponentDrawer } = menu.actions;
+export const { notifications, menuItems, activeItem, activeComponent, openDrawer, openComponentDrawer } = menu.actions;

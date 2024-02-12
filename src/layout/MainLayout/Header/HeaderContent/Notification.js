@@ -11,7 +11,7 @@ import { BellOutlined, CloseOutlined } from '@ant-design/icons';
 const Notification = () => {
   const theme = useTheme();
   const matchesXs = useMediaQuery(theme.breakpoints.down('md'));
-  const { notificationsCount } = useSelector((state) => state.menu);
+  const { notificationCount } = useSelector((state) => state.menu);
   const anchorRef = useRef(null);
   const [open, setOpen] = useState(false);
   const handleToggle = () => {
@@ -37,7 +37,7 @@ const Notification = () => {
         aria-haspopup="true"
         onClick={handleToggle}
       >
-        <Badge badgeContent={notificationsCount} color="primary">
+        <Badge badgeContent={notificationCount} color="primary">
           <BellOutlined />
         </Badge>
       </IconButton>

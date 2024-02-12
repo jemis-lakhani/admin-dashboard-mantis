@@ -8,6 +8,7 @@ import Header from './Header';
 import Breadcrumbs from 'components/@extended/Breadcrumbs';
 import { menuItems, openDrawer } from 'store/reducers/menu';
 import axios from 'axios';
+import { notifications } from 'store/reducers/menu';
 
 const MainLayout = () => {
   const theme = useTheme();
@@ -33,6 +34,18 @@ const MainLayout = () => {
     };
     getMenuItems();
     // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  useEffect(() => {
+    const getNotifications = async () => {
+      try {
+        const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}menu/list/notifications`);
+        dispatch(notifications({ notifications: response?.data }));
+      } catch (error) {
+        console.log({ error });
+      }
+    };
+    getNotifications();
   }, []);
 
   useEffect(() => {

@@ -204,7 +204,7 @@ function EnhancedTableHead(props) {
           <TableCell
             key={headCell.id}
             sortDirection={orderBy === headCell.id ? order : false}
-            sx={{ color: '#666666', textAlign: 'center', pt: '0.5rem !important', pb: '0.5rem !important' }}
+            sx={{ color: '#666666', textAlign: 'center', p: '3px' }}
           >
             {headCell.isSortable ? (
               <TableSortLabel
@@ -322,6 +322,10 @@ const MemberList = () => {
   const inputOrSelectStyle = {
     p: '4px 14px 4px 12px'
   };
+  const tableCellStyle = {
+    color: '#666666',
+    p: '3px 6px'
+  };
 
   const MemberStatusMenu = ({ value, onChange }) => {
     const [selectedStatus, setSelectedStatus] = useState(value);
@@ -359,15 +363,20 @@ const MemberList = () => {
 
   return (
     <>
+      {/* Member details pop-up */}
       <Modal
         open={open}
         onClose={() => setMemberPopupOpen(false)}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <MemberPopup handleClose={() => setMemberPopupOpen(false)}></MemberPopup>
+        <>
+          <MemberPopup handleClose={() => setMemberPopupOpen(false)}></MemberPopup>
+        </>
       </Modal>
-      <Grid container sx={{ ml: 0, mt: 0, mb: 2, width: '100%', alignItems: 'center' }}>
+
+      {/* Filter */}
+      <Grid container sx={{ ml: '-0.5rem', mt: 0, mb: 2, width: '100%', alignItems: 'center' }}>
         <Grid item xs={12} md={6} lg={3} xl={3}>
           <Stack direction="row">
             <Grid item xs={6} sx={{ p: '0.5rem' }}>
@@ -429,7 +438,7 @@ const MemberList = () => {
           </Stack>
         </Grid>
         <Grid item xs={12} sm={12} md lg={5} xl={5} sx={{ p: '0.5rem' }}>
-          <Stack direction="row" sx={{ columnGap: '0.5rem', mr: 1, justifyContent: mediumScreen ? 'start' : 'end' }}>
+          <Stack direction="row" sx={{ columnGap: '0.5rem', justifyContent: mediumScreen ? 'start' : 'end' }}>
             <Button variant="outlined" size="small" sx={statusButtonStyle}>
               Generel Membership
             </Button>
@@ -469,7 +478,6 @@ const MemberList = () => {
                     <TableRow
                       hover
                       role="checkbox"
-                      onClick={() => setMemberPopupOpen(true)}
                       aria-checked={isItemSelected}
                       tabIndex={-1}
                       key={row.id}
@@ -486,43 +494,43 @@ const MemberList = () => {
                           onClick={(event) => handleClick(event, row.id)}
                         />
                       </TableCell>
-                      <TableCell align="center" sx={{ color: '#666666' }}>
+                      <TableCell onClick={() => setMemberPopupOpen(true)} align="center" sx={tableCellStyle}>
                         {row.PartnerNickName}
                       </TableCell>
-                      <TableCell align="center" sx={{ color: '#666666' }}>
+                      <TableCell onClick={() => setMemberPopupOpen(true)} align="center" sx={tableCellStyle}>
                         {row.MemberNickName}
                       </TableCell>
-                      <TableCell align="center" sx={{ color: '#666666' }}>
+                      <TableCell onClick={() => setMemberPopupOpen(true)} align="center" sx={tableCellStyle}>
                         {row.RemainMoney} won
                       </TableCell>
-                      <TableCell align="center" sx={{ color: '#666666' }}>
+                      <TableCell onClick={() => setMemberPopupOpen(true)} align="center" sx={tableCellStyle}>
                         {row.RemainPoint}
                       </TableCell>
-                      <TableCell align="center" sx={{ color: '#666666' }}>
+                      <TableCell onClick={() => setMemberPopupOpen(true)} align="center" sx={tableCellStyle}>
                         {row.TotalChargeMoney} won
                       </TableCell>
-                      <TableCell align="center" sx={{ color: '#666666' }}>
+                      <TableCell onClick={() => setMemberPopupOpen(true)} align="center" sx={tableCellStyle}>
                         {row.TotalExchangeMoney} won
                       </TableCell>
-                      <TableCell align="center" sx={{ color: '#666666' }}>
+                      <TableCell onClick={() => setMemberPopupOpen(true)} align="center" sx={tableCellStyle}>
                         {row.TotalBetMoney} won
                       </TableCell>
-                      <TableCell align="center" sx={{ color: '#666666' }}>
+                      <TableCell onClick={() => setMemberPopupOpen(true)} align="center" sx={tableCellStyle}>
                         {row.TotalHitMoney} won
                       </TableCell>
-                      <TableCell align="center" sx={{ color: '#666666' }}>
+                      <TableCell onClick={() => setMemberPopupOpen(true)} align="center" sx={tableCellStyle}>
                         {row.LastConnectDate}
                       </TableCell>
-                      <TableCell align="center" sx={{ color: '#666666' }}>
+                      <TableCell onClick={() => setMemberPopupOpen(true)} align="center" sx={tableCellStyle}>
                         {row.CreateDate}
                       </TableCell>
-                      <TableCell align="center" sx={{ color: '#666666' }}>
+                      <TableCell onClick={() => setMemberPopupOpen(true)} align="center" sx={tableCellStyle}>
                         {row.MemberLevel}
                       </TableCell>
-                      <TableCell align="center">
+                      <TableCell align="center" sx={tableCellStyle}>
                         <MailIcon />
                       </TableCell>
-                      <TableCell align="center">
+                      <TableCell align="center" sx={tableCellStyle}>
                         <Stack direction="row">
                           <MemberStatusMenu
                             value={row.status || ''}

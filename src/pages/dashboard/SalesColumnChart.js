@@ -79,8 +79,6 @@ const columnChartOptions = {
   ]
 };
 
-// ==============================|| SALES COLUMN CHART ||============================== //
-
 const SalesColumnChart = () => {
   const theme = useTheme();
 

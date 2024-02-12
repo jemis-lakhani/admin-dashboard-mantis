@@ -53,7 +53,7 @@ switch (level) {
 }
 const cellStyle = {
   border: '1px solid #ddd',
-  padding: '8px'
+  padding: '4px'
 };
 const modalStyle = {
   position: 'absolute',
@@ -66,7 +66,7 @@ const modalStyle = {
   bgcolor: 'background.paper',
   border: '2px solid #000',
   boxShadow: 24,
-  p: 4,
+  p: 2,
   mt: 4
 };
 
@@ -84,7 +84,7 @@ const MemberPopup = ({ handleClose }) => {
         <Table>
           <TableBody>
             <TableRow>
-              <TableCell rowspan={2} style={{ ...cellStyle, width: 100, backgroundColor: '#F5F5F5' }}>
+              <TableCell rowSpan={2} style={{ ...cellStyle, width: 100, backgroundColor: '#F5F5F5' }}>
                 <div style={{ display: 'flex', gap: 10, width: 'fit-content', margin: 'auto' }}>
                   <Avatar sx={{ bgcolor: levelColor, height: 26, width: 26 }}>{level}</Avatar>
                   <span style={{ justifyContent: 'center' }}>Lv.{level}</span>
@@ -151,7 +151,7 @@ const MemberPopup = ({ handleClose }) => {
           </TabsList>
           <Box>
             <TabPanel className="CustomTabPanelIntroduction" value={0}>
-              <MemberTabOne></MemberTabOne>
+              <MemberTabOne handleClose={handleClose}></MemberTabOne>
             </TabPanel>
             <TabPanel className="CustomTabPanelIntroduction" value={1}>
               Content 2
@@ -198,14 +198,14 @@ function Styles() {
         .CustomTabsListIntroduction {
           display: flex;
           gap: 5px;
-          padding-bottom: 1rem;
+          padding-bottom: 0.5rem;
           padding-top: 1rem;
         }
 
         .CustomTabIntroduction {
           background-color: white;
           border: 1px solid lightgray;
-          padding: 7px 15px 7px 15px;
+          padding: 6px;
           border-radius: 5px;
           cursor: pointer;
         }

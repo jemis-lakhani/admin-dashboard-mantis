@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 import MuiBreadcrumbs from '@mui/material/Breadcrumbs';
 import { Grid, Typography } from '@mui/material';
@@ -8,6 +9,7 @@ import MainCard from '../MainCard';
 
 const Breadcrumbs = ({ navigation, title, ...others }) => {
   const location = useLocation();
+  const menuItems = useSelector((state) => state.menu.menuItems);
   const [main, setMain] = useState();
   const [item, setItem] = useState();
 
@@ -29,13 +31,18 @@ const Breadcrumbs = ({ navigation, title, ...others }) => {
   };
 
   useEffect(() => {
-    navigation?.map((menu) => {
+    if (location.pathname === '/') {
+      setMain({});
+      setItem({});
+      return;
+    }
+    menuItems?.map((menu) => {
       if (menu.type && menu.type === 'group') {
         getCollapse(menu);
       }
       return false;
     });
-  });
+  }, [location.pathname, menuItems]);
 
   let mainContent;
   let itemContent;
@@ -62,9 +69,9 @@ const Breadcrumbs = ({ navigation, title, ...others }) => {
     // main
     if (item.breadcrumbs !== false) {
       breadcrumbContent = (
-        <MainCard border={false} sx={{ mb: 3, bgcolor: 'transparent' }} {...others} content={false}>
-          <Grid container direction="column" justifyContent="flex-start" alignItems="flex-start" spacing={1}>
-            <Grid item>
+        <MainCard border={false} sx={{ mb: 1, bgcolor: 'transparent' }} {...others} content={false}>
+          <Grid container direction="column" justifyContent="flex-start" alignItems="flex-start" spacing={1} m={0}>
+            <Grid item sx={{ p: '0 !important' }}>
               <MuiBreadcrumbs aria-label="breadcrumb">
                 <HomeOutlinedIcon sx={{ pt: '2px' }} />
                 {mainContent}
@@ -81,7 +88,7 @@ const Breadcrumbs = ({ navigation, title, ...others }) => {
 };
 
 Breadcrumbs.propTypes = {
-  navigation: PropTypes.object,
+  navigation: PropTypes.array,
   title: PropTypes.bool
 };
 

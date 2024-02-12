@@ -23,7 +23,7 @@ const cellStyle = {
   padding: '6px'
 };
 
-const MemberTabOne = () => {
+const MemberTabOne = ({ handleClose }) => {
   //popover 1
   const [anchor1, setAnchor1] = useState(null);
   const handleClick1 = (event) => {
@@ -97,7 +97,7 @@ const MemberTabOne = () => {
       </TableContainer>
 
       {/* table 2 */}
-      <Typography variant="h5" sx={{ m: 1, mt: 3 }}>
+      <Typography variant="h5" sx={{ m: 1 }}>
         title 2
       </Typography>
       <TableContainer component={Paper}>
@@ -121,7 +121,7 @@ const MemberTabOne = () => {
                       horizontal: 'left'
                     }}
                     transformOrigin={{
-                      vartical: 'top',
+                      vertical: 'top',
                       horizontal: 'right'
                     }}
                   >
@@ -163,7 +163,7 @@ const MemberTabOne = () => {
                       horizontal: 'left'
                     }}
                     transformOrigin={{
-                      vartical: 'top',
+                      vertical: 'top',
                       horizontal: 'right'
                     }}
                   >
@@ -214,7 +214,7 @@ const MemberTabOne = () => {
       </TableContainer>
 
       {/* table 3 */}
-      <Typography variant="h5" sx={{ m: 1, mt: 3 }}>
+      <Typography variant="h5" sx={{ m: 1 }}>
         title 3
       </Typography>
       <TableContainer component={Paper}>
@@ -245,7 +245,7 @@ const MemberTabOne = () => {
       </TableContainer>
 
       {/* table 4 */}
-      <Typography variant="h5" sx={{ m: 1, mt: 3 }}>
+      <Typography variant="h5" sx={{ m: 1 }}>
         title 4
       </Typography>
       <TableContainer component={Paper}>
@@ -279,7 +279,7 @@ const MemberTabOne = () => {
         </Table>
       </TableContainer>
       <Stack spacing={1} direction="row-reverse" sx={{ pt: 2 }}>
-        <Button disableElevation size="small" color="secondary" variant="contained">
+        <Button disableElevation size="small" color="secondary" variant="contained" onClick={handleClose}>
           Close
         </Button>
         <Button disableElevation size="small" color="primary" variant="contained" sx={{ color: 'white' }}>

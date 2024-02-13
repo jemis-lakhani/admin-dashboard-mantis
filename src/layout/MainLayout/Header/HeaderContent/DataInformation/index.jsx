@@ -48,16 +48,8 @@ const DataInformation = ({ data, matchesLg }) => {
           aria-expanded={menuOpen ? 'true' : undefined}
           style={{ zIndex: '1500', cursor: 'pointer', display: 'flex', alignItems: 'center' }}
         >
-          <Chip
-            variant="combined"
-            label={item?.label}
-            size="small"
-            sx={{ cursor: 'pointer', position: 'relative', backgroundColor: item?.color }}
-          />
-          <Typography
-            variant="h6"
-            sx={{ cursor: 'pointer', position: 'relative', color: '#707070', fontWeight: '700', marginTop: '0.5px', marginLeft: '0.5rem' }}
-          >
+          <Chip variant="combined" label={item?.label} size="small" sx={{ backgroundColor: item?.color }} />
+          <Typography variant="h6" sx={{ color: '#707070', fontWeight: '700', marginTop: '0.5px', marginLeft: '0.5rem' }}>
             {item?.value}
           </Typography>
         </div>

@@ -22,6 +22,7 @@ const DataInformation = ({ data, matchesLg }) => {
     setAnchorEl(event.currentTarget);
   };
   const handleClose = (event) => {
+    console.log('Close');
     setAnchorEl(null);
   };
 
@@ -52,41 +53,41 @@ const DataInformation = ({ data, matchesLg }) => {
           <Typography variant="h6" sx={{ color: '#707070', fontWeight: '700', marginTop: '0.5px', marginLeft: '0.5rem' }}>
             {item?.value}
           </Typography>
-          <Menu
-            anchorEl={anchorEl}
-            id={`detailed-info-${index}`}
-            open={menuOpen}
-            onClose={handleClose}
-            onClick={handleClose}
-            PaperProps={{
-              elevation: 0,
-              sx: {
-                overflow: 'visible',
-                mt: 3,
-                '& .MuiList-root': { p: '0 !important' }
-              }
-            }}
-            transformOrigin={{ horizontal: 'right', vertical: 'top' }}
-            anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
-          >
-            <MenuItem sx={{ p: '0' }}>
-              <Stack direction="column">
-                <Stack direction="row">
-                  <Item sx={{ backgroundColor: theme.palette.secondary[200], width: '75px' }}>Total</Item>
-                  <Item sx={{ minWidth: '100px', textAlign: 'right' }}>10,000,00</Item>
-                </Stack>
-                <Stack direction="row">
-                  <Item sx={{ backgroundColor: theme.palette.secondary[200], width: '75px' }}>Used</Item>
-                  <Item sx={{ minWidth: '100px', textAlign: 'right' }}>2,00,000</Item>
-                </Stack>
-                <Stack direction="row">
-                  <Item sx={{ backgroundColor: theme.palette.secondary[200], width: '75px' }}>Remain</Item>
-                  <Item sx={{ minWidth: '100px', textAlign: 'right' }}>8,00,000</Item>
-                </Stack>
-              </Stack>
-            </MenuItem>
-          </Menu>
         </div>
+        <Menu
+          anchorEl={anchorEl}
+          id={`detailed-info-${index}`}
+          open={menuOpen}
+          onClose={handleClose}
+          onClick={handleClose}
+          PaperProps={{
+            elevation: 0,
+            sx: {
+              overflow: 'visible',
+              mt: 3,
+              '& .MuiList-root': { p: '0 !important' }
+            }
+          }}
+          transformOrigin={{ horizontal: 'right', vertical: 'top' }}
+          anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
+        >
+          <MenuItem sx={{ p: '0' }}>
+            <Stack direction="column">
+              <Stack direction="row">
+                <Item sx={{ backgroundColor: theme.palette.secondary[200], width: '75px' }}>Total</Item>
+                <Item sx={{ minWidth: '100px', textAlign: 'right' }}>10,000,00</Item>
+              </Stack>
+              <Stack direction="row">
+                <Item sx={{ backgroundColor: theme.palette.secondary[200], width: '75px' }}>Used</Item>
+                <Item sx={{ minWidth: '100px', textAlign: 'right' }}>2,00,000</Item>
+              </Stack>
+              <Stack direction="row">
+                <Item sx={{ backgroundColor: theme.palette.secondary[200], width: '75px' }}>Remain</Item>
+                <Item sx={{ minWidth: '100px', textAlign: 'right' }}>8,00,000</Item>
+              </Stack>
+            </Stack>
+          </MenuItem>
+        </Menu>
       </Box>
     );
   });

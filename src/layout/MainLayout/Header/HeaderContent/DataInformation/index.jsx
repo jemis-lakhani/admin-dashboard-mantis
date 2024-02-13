@@ -1,13 +1,13 @@
 import { Box, Chip, Stack, Typography } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
-import Menu from '@mui/material/Menu';
-import MenuItem from '@mui/material/MenuItem';
 import Paper from '@mui/material/Paper';
 import { styled } from '@mui/material/styles';
+import { Popover } from '@mui/material';
 import { useState } from 'react';
 
 const DataInformation = ({ data, matchesLg }) => {
   const theme = useTheme();
+  const bgSecondary = theme.palette.secondary[200];
   const [anchorEl, setAnchorEl] = useState(null);
   const menuOpen = Boolean(anchorEl);
   const items = [
@@ -21,8 +21,7 @@ const DataInformation = ({ data, matchesLg }) => {
   const handleHover = (event) => {
     setAnchorEl(event.currentTarget);
   };
-  const handleClose = (event) => {
-    console.log('Close');
+  const handleClose = () => {
     setAnchorEl(null);
   };
 
@@ -47,47 +46,68 @@ const DataInformation = ({ data, matchesLg }) => {
           aria-controls={menuOpen ? `detailed-info-${index}` : undefined}
           aria-haspopup="true"
           aria-expanded={menuOpen ? 'true' : undefined}
-          style={{ cursor: 'pointer', display: 'flex', alignItems: 'center' }}
+          style={{ zIndex: '1500', cursor: 'pointer', display: 'flex', alignItems: 'center' }}
         >
-          <Chip variant="combined" label={item?.label} size="small" sx={{ backgroundColor: item?.color }} />
-          <Typography variant="h6" sx={{ color: '#707070', fontWeight: '700', marginTop: '0.5px', marginLeft: '0.5rem' }}>
+          <Chip
+            variant="combined"
+            label={item?.label}
+            size="small"
+            sx={{ cursor: 'pointer', position: 'relative', backgroundColor: item?.color }}
+          />
+          <Typography
+            variant="h6"
+            sx={{ cursor: 'pointer', position: 'relative', color: '#707070', fontWeight: '700', marginTop: '0.5px', marginLeft: '0.5rem' }}
+          >
             {item?.value}
           </Typography>
         </div>
-        <Menu
-          anchorEl={anchorEl}
+        <Popover
           id={`detailed-info-${index}`}
           open={menuOpen}
-          onClose={handleClose}
-          onClick={handleClose}
-          PaperProps={{
-            elevation: 0,
-            sx: {
-              overflow: 'visible',
-              mt: 3,
-              '& .MuiList-root': { p: '0 !important' }
+          anchorEl={anchorEl}
+          sx={{
+            zIndex: 1500,
+            pointerEvents: 'none',
+            mt: 1.5,
+            '& .MuiPaper-root': { overflow: 'visible', boxShadow: 'none' },
+            '& .MuiPaper-root::before': {
+              content: '""',
+              display: 'block',
+              position: 'absolute',
+              top: '2px',
+              right: '90%',
+              width: 10,
+              height: 10,
+              bgcolor: bgSecondary,
+              transform: 'translateY(-50%) rotate(45deg)'
             }
           }}
-          transformOrigin={{ horizontal: 'right', vertical: 'top' }}
-          anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
+          anchorOrigin={{
+            vertical: 'bottom',
+            horizontal: 'left'
+          }}
+          transformOrigin={{
+            vertical: 'top',
+            horizontal: 'left'
+          }}
+          onClose={handleClose}
+          disableRestoreFocus
         >
-          <MenuItem sx={{ p: '0' }}>
-            <Stack direction="column">
-              <Stack direction="row">
-                <Item sx={{ backgroundColor: theme.palette.secondary[200], width: '75px' }}>Total</Item>
-                <Item sx={{ minWidth: '100px', textAlign: 'right' }}>10,000,00</Item>
-              </Stack>
-              <Stack direction="row">
-                <Item sx={{ backgroundColor: theme.palette.secondary[200], width: '75px' }}>Used</Item>
-                <Item sx={{ minWidth: '100px', textAlign: 'right' }}>2,00,000</Item>
-              </Stack>
-              <Stack direction="row">
-                <Item sx={{ backgroundColor: theme.palette.secondary[200], width: '75px' }}>Remain</Item>
-                <Item sx={{ minWidth: '100px', textAlign: 'right' }}>8,00,000</Item>
-              </Stack>
+          <Stack direction="column">
+            <Stack direction="row">
+              <Item sx={{ backgroundColor: bgSecondary, width: '75px' }}>Total</Item>
+              <Item sx={{ minWidth: '100px', textAlign: 'right' }}>10,000,00</Item>
             </Stack>
-          </MenuItem>
-        </Menu>
+            <Stack direction="row">
+              <Item sx={{ backgroundColor: bgSecondary, width: '75px' }}>Used</Item>
+              <Item sx={{ minWidth: '100px', textAlign: 'right' }}>2,00,000</Item>
+            </Stack>
+            <Stack direction="row">
+              <Item sx={{ backgroundColor: bgSecondary, width: '75px' }}>Remain</Item>
+              <Item sx={{ minWidth: '100px', textAlign: 'right' }}>8,00,000</Item>
+            </Stack>
+          </Stack>
+        </Popover>
       </Box>
     );
   });

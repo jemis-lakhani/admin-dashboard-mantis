@@ -88,6 +88,17 @@ function AuthLogin() {
               >
                 <img style={{ height: '50px', width: '50px' }} src="/login_encrypted.svg" alt="" />
               </Box>
+              <Box
+                style={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center',
+                  justifyContent: 'center'
+                }}
+              >
+                <Typography sx={{ fontSize: '1.5rem', fontWeight: 500 }}>Welcome</Typography>
+                <Typography sx={{ fontSize: '1rem' }}>Please Login</Typography>
+              </Box>
             </Grid>
             <Grid item>
               <form
@@ -130,7 +141,7 @@ function AuthLogin() {
                   style={{
                     marginTop: '1rem',
                     borderRadius: '0.25rem',
-                    background: 'linear-gradient(to right, #gray-400, #gray-600)',
+                    backgroundImage: 'linear-gradient(to right, #656D78, #434A54)',
                     color: 'white'
                   }}
                   type="submit"

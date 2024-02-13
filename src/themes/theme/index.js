@@ -1,5 +1,5 @@
 const Theme = (colors) => {
-  const { blue, red, gold, cyan, green, grey } = colors;
+  const { red, gold, cyan, green, grey } = colors;
   const greyColors = {
     0: grey[0],
     50: grey[1],
@@ -23,17 +23,6 @@ const Theme = (colors) => {
 
   return {
     primary: {
-      // lighter: blue[0],
-      // 100: blue[1],
-      // 200: blue[2],
-      // light: blue[3],
-      // 400: blue[4],
-      // main: blue[5],
-      // dark: blue[6],
-      // 700: blue[7],
-      // darker: blue[8],
-      // 900: blue[9],
-      // contrastText
       main: '#FB6E52'
     },
     secondary: {

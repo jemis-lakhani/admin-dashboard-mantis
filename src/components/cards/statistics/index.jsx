@@ -24,7 +24,7 @@ const icons = {
   connect: <ConnectWithoutContactIcon />
 };
 
-const AnalyticEcommerce = ({ color, title, subtitle, icon, isLoss, count, percentage }) => {
+const Statistics = ({ color, title, subtitle, icon, isLoss, count, percentage }) => {
   const theme = useTheme();
   const error = theme.palette.error.main;
   const success = theme.palette.success.main;
@@ -61,7 +61,7 @@ const AnalyticEcommerce = ({ color, title, subtitle, icon, isLoss, count, percen
   );
 };
 
-AnalyticEcommerce.propTypes = {
+Statistics.propTypes = {
   color: PropTypes.string,
   title: PropTypes.string,
   count: PropTypes.string,
@@ -70,8 +70,8 @@ AnalyticEcommerce.propTypes = {
   extra: PropTypes.oneOfType([PropTypes.node, PropTypes.string])
 };
 
-AnalyticEcommerce.defaultProps = {
+Statistics.defaultProps = {
   color: 'primary'
 };
 
-export default AnalyticEcommerce;
+export default Statistics;

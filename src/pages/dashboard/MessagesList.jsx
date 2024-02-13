@@ -26,10 +26,9 @@ function MessagesList() {
       <List sx={{ width: '100%', bgcolor: 'background.paper' }}>
         {notifications?.map((item, index) => {
           return (
-            <>
+            <Box key={index + item?.title}>
               <ListItem
                 alignItems="flex-start"
-                key={index + item.title}
                 secondaryAction={
                   <Typography sx={{ display: 'inline' }} component="span" variant="body2">
                     {'1m ago'}
@@ -50,7 +49,7 @@ function MessagesList() {
                 />
               </ListItem>
               <Divider component="li" />
-            </>
+            </Box>
           );
         })}
       </List>

@@ -1,14 +1,14 @@
 import { useState } from 'react';
 
 // material-ui
-import { Box, Button, Grid, List, ListItemButton, ListItemText, Stack, Typography } from '@mui/material';
+import { Box, Button, Grid, Stack, Typography } from '@mui/material';
 
 // project import
 import OrdersTable from './OrdersTable';
 import IncomeAreaChart from './IncomeAreaChart';
 import SalesColumnChart from './SalesColumnChart';
 import MainCard from 'components/MainCard';
-import AnalyticEcommerce from 'components/cards/statistics/AnalyticEcommerce';
+import Statistics from 'components/cards/statistics';
 import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
@@ -25,18 +25,10 @@ const DashboardDefault = () => {
         <Typography variant="h5">Dashboard</Typography>
       </Grid>
       <Grid item xs={12} sm={6} md={4} lg={3}>
-        <AnalyticEcommerce
-          title="Views"
-          subtitle="vs yesterday"
-          icon="visitors"
-          count="4,42,236"
-          percentage={44}
-          color="primary"
-          extra="35,000"
-        />
+        <Statistics title="Views" subtitle="vs yesterday" icon="visitors" count="4,42,236" percentage={44} color="primary" extra="35,000" />
       </Grid>
       <Grid item xs={12} sm={6} md={4} lg={3}>
-        <AnalyticEcommerce
+        <Statistics
           title="Total Users"
           subtitle="vs yesterday"
           icon="newSingup"
@@ -48,7 +40,7 @@ const DashboardDefault = () => {
         />
       </Grid>
       <Grid item xs={12} sm={6} md={4} lg={3}>
-        <AnalyticEcommerce
+        <Statistics
           title="Total Order"
           subtitle="vs yesterday"
           icon="deposit"
@@ -59,7 +51,7 @@ const DashboardDefault = () => {
         />
       </Grid>
       <Grid item xs={12} sm={6} md={4} lg={3}>
-        <AnalyticEcommerce
+        <Statistics
           title="Total Sales"
           subtitle="vs yesterday"
           icon="send"
@@ -70,7 +62,7 @@ const DashboardDefault = () => {
         />
       </Grid>
       <Grid item xs={12} sm={6} md={4} lg={3}>
-        <AnalyticEcommerce
+        <Statistics
           title="Total Sales"
           subtitle="vs yesterday"
           icon="money"
@@ -81,7 +73,7 @@ const DashboardDefault = () => {
         />
       </Grid>
       <Grid item xs={12} sm={6} md={4} lg={3}>
-        <AnalyticEcommerce
+        <Statistics
           title="Total Sales"
           subtitle="vs yesterday"
           icon="winning"
@@ -93,7 +85,7 @@ const DashboardDefault = () => {
         />
       </Grid>
       <Grid item xs={12} sm={6} md={4} lg={3}>
-        <AnalyticEcommerce
+        <Statistics
           title="Total Sales"
           subtitle="vs yesterday"
           icon="bets"
@@ -104,7 +96,7 @@ const DashboardDefault = () => {
         />
       </Grid>
       <Grid item xs={12} sm={6} md={4} lg={3}>
-        <AnalyticEcommerce
+        <Statistics
           title="Total Sales"
           subtitle="vs yesterday"
           icon="connect"

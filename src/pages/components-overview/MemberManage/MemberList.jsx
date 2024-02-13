@@ -18,7 +18,7 @@ import { DemoContainer, DemoItem } from '@mui/x-date-pickers/internals/demo';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
-import { FormControl, MenuItem, Select, Stack, useMediaQuery } from '@mui/material';
+import { FormControl, FormControlLabel, FormGroup, MenuItem, Select, Stack, useMediaQuery } from '@mui/material';
 import OutlinedInput from '@mui/material/OutlinedInput';
 import { Button, Grid } from '@mui/material';
 import MailIcon from '@mui/icons-material/Mail';
@@ -47,6 +47,7 @@ function generateRandomDateTime() {
     .padStart(2, '0')}:${second.toString().padStart(2, '0')}`;
 }
 const memberStatus = ['Membership not verified', 'Membership suspension', 'Withdrawal', 'Change phone number'];
+const memberStatusFilter = ['General Membership', 'Black', 'Stop', 'withdrawal', 'Email'];
 
 function createData(id) {
   return {
@@ -299,32 +300,32 @@ const MemberList = () => {
   }, [order, orderBy, page, rowsPerPage]);
 
   // Common styles
+  const textGray = '#666666';
   const secondaryMain = theme.palette.secondary.main;
   const secondary400 = theme.palette.secondary[400];
-  const statusButtonStyle = {
-    color: secondaryMain,
-    borderColor: secondary400,
-    '&:hover': {
-      borderColor: secondary400
-    }
-  };
+  const secondary600 = theme.palette.secondary[600];
   const containedBtnStyle = {
     ml: '0.5rem',
     p: '2px 10px',
     fontSize: '0.75rem',
     minWidth: '50px',
     color: '#FFFFFF',
-    backgroundColor: theme.palette.secondary[600],
+    backgroundColor: secondary600,
     '&:hover': {
-      backgroundColor: theme.palette.secondary[600]
+      backgroundColor: secondary600
     }
   };
-  const inputOrSelectStyle = {
+  const inputStyle = {
     p: '4px 14px 4px 12px'
   };
   const tableCellStyle = {
-    color: '#666666',
+    color: textGray,
     p: '3px 6px'
+  };
+
+  const handleStatusChange = (rowId, value) => {
+    console.log({ rowId });
+    console.log({ value });
   };
 
   const MemberStatusMenu = ({ value, onChange }) => {
@@ -356,9 +357,36 @@ const MemberList = () => {
     );
   };
 
-  const handleStatusChange = (rowId, value) => {
-    console.log({ rowId });
-    console.log({ value });
+  const MemberStatusFilter = () => {
+    const [checkedStatus, setCheckedStatus] = useState({});
+
+    const handleChange = (status) => (event) => {
+      setCheckedStatus({
+        ...checkedStatus,
+        [status]: event.target.checked
+      });
+    };
+
+    return (
+      <FormGroup sx={{ display: 'flex', flexDirection: 'row', gap: 1 }}>
+        {memberStatusFilter.map((status) => (
+          <FormControlLabel
+            key={status}
+            control={<Checkbox checked={checkedStatus[status] || false} onChange={handleChange(status)} sx={{ display: 'none' }} />}
+            label={status}
+            sx={{
+              ...inputStyle,
+              m: '0',
+              color: checkedStatus[status] ? 'white' : secondaryMain,
+              border: `1px solid ${secondary400}`,
+              borderRadius: '4px',
+              backgroundColor: checkedStatus[status] ? secondary600 : 'trasnparent',
+              userSelect: 'none'
+            }}
+          />
+        ))}
+      </FormGroup>
+    );
   };
 
   return (
@@ -385,7 +413,7 @@ const MemberList = () => {
                   value="10"
                   displayEmpty
                   sx={{
-                    '& .MuiSelect-select': inputOrSelectStyle
+                    '& .MuiSelect-select': inputStyle
                   }}
                 >
                   <MenuItem value={10}>Ten</MenuItem>
@@ -399,7 +427,7 @@ const MemberList = () => {
                 <OutlinedInput
                   placeholder="Search"
                   sx={{
-                    '& .MuiInputBase-input': inputOrSelectStyle
+                    '& .MuiInputBase-input': inputStyle
                   }}
                 />
               </FormControl>
@@ -408,13 +436,13 @@ const MemberList = () => {
         </Grid>
         <Grid item xs={12} sm={12} md lg={4} xl={4} sx={{ p: '0.5rem' }}>
           <Stack direction="row" alignItems="center">
-            <label style={{ color: '#666666', fontWeight: '600', marginRight: '0.5rem' }}>Date</label>
+            <label style={{ color: textGray, fontWeight: '600', marginRight: '0.5rem' }}>Date</label>
             <LocalizationProvider dateAdapter={AdapterDayjs}>
               <DemoContainer components={['DatePicker']} sx={{ pt: '0', maxWidth: '100%', overflow: 'hidden' }}>
                 <DemoItem>
                   <DatePicker
                     sx={{
-                      '& .MuiInputBase-input': inputOrSelectStyle
+                      '& .MuiInputBase-input': inputStyle
                     }}
                   />
                 </DemoItem>
@@ -426,7 +454,7 @@ const MemberList = () => {
                 <DemoItem>
                   <DatePicker
                     sx={{
-                      '& .MuiInputBase-input': inputOrSelectStyle
+                      '& .MuiInputBase-input': inputStyle
                     }}
                   />
                 </DemoItem>
@@ -439,21 +467,7 @@ const MemberList = () => {
         </Grid>
         <Grid item xs={12} sm={12} md lg={5} xl={5} sx={{ p: '0.5rem' }}>
           <Stack direction="row" sx={{ columnGap: '0.5rem', justifyContent: mediumScreen ? 'start' : 'end' }}>
-            <Button variant="outlined" size="small" sx={statusButtonStyle}>
-              Generel Membership
-            </Button>
-            <Button variant="outlined" size="small" sx={statusButtonStyle}>
-              Black
-            </Button>
-            <Button variant="outlined" size="small" sx={statusButtonStyle}>
-              Stop
-            </Button>
-            <Button variant="outlined" size="small" sx={statusButtonStyle}>
-              Withdrawl
-            </Button>
-            <Button variant="outlined" size="small" sx={statusButtonStyle}>
-              Email
-            </Button>
+            <MemberStatusFilter />
           </Stack>
         </Grid>
       </Grid>

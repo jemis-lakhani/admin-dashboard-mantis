@@ -9,28 +9,80 @@ import Breadcrumbs from 'components/@extended/Breadcrumbs';
 import { menuItems, openDrawer } from 'store/reducers/menu';
 import axios from 'axios';
 import { notifications } from 'store/reducers/menu';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const MainLayout = () => {
+  const dispatch = useDispatch();
   const theme = useTheme();
   const matchDownLG = useMediaQuery(theme.breakpoints.down('lg'));
-  const dispatch = useDispatch();
-
   const { drawerOpen } = useSelector((state) => state.menu);
-
   const [open, setOpen] = useState(drawerOpen);
+  const [navigation, setNavigation] = useState([]);
+  const [notificationsArray, setNotifications] = useState([]);
+
   const handleDrawerToggle = () => {
     setOpen(!open);
     dispatch(openDrawer({ drawerOpen: !open }));
   };
 
-  const [navigation, setNavigation] = useState([]);
+  const showToast = (notification) => {
+    if (notification.type === 'success') {
+      toast.success(
+        <div>
+          <strong>{notification.title}</strong>
+          <br />
+          {notification.body}
+        </div>,
+        {
+          position: 'bottom-right'
+        }
+      );
+    } else if (notification.type === 'warning') {
+      toast.warning(
+        <div>
+          <strong>{notification.title}</strong>
+          <br />
+          {notification.body}
+        </div>,
+        {
+          position: 'bottom-right'
+        }
+      );
+    } else if (notification.type === 'error') {
+      toast.error(
+        <div>
+          <strong>{notification.title}</strong>
+          <br />
+          {notification.body}
+        </div>,
+        {
+          position: 'bottom-right'
+        }
+      );
+    } else {
+      toast.info(
+        <div>
+          <strong>{notification.title}</strong>
+          <br />
+          {notification.body}
+        </div>,
+        {
+          position: 'bottom-right'
+        }
+      );
+    }
+  };
+
   useEffect(() => {
     const getMenuItems = async () => {
       try {
         const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}menu/list`);
         dispatch(menuItems({ menuItems: response.data }));
         setNavigation(response.data);
-      } catch (error) {}
+      } catch (error) {
+        console.log({ error });
+      }
     };
     getMenuItems();
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -41,6 +93,7 @@ const MainLayout = () => {
       try {
         const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}menu/list/notifications`);
         dispatch(notifications({ notifications: response?.data }));
+        setNotifications(response?.data);
       } catch (error) {
         console.log({ error });
       }
@@ -60,6 +113,12 @@ const MainLayout = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [drawerOpen]);
 
+  useEffect(() => {
+    notificationsArray?.map((notification) => {
+      showToast(notification);
+    });
+  }, [notificationsArray]);
+
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column', width: '100%' }}>
       <Header open={open} handleDrawerToggle={handleDrawerToggle} />
@@ -69,6 +128,7 @@ const MainLayout = () => {
           <Breadcrumbs navigation={navigation} title />
           <Box>
             <Outlet />
+            <ToastContainer />
           </Box>
         </Box>
       </Box>

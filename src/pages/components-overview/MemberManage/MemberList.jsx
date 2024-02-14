@@ -14,17 +14,11 @@ import Paper from '@mui/material/Paper';
 import Checkbox from '@mui/material/Checkbox';
 import { visuallyHidden } from '@mui/utils';
 import { useTheme } from '@mui/material/styles';
-import { DemoContainer, DemoItem } from '@mui/x-date-pickers/internals/demo';
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { DatePicker } from '@mui/x-date-pickers/DatePicker';
-import { FormControl, FormControlLabel, FormGroup, MenuItem, Select, Stack, useMediaQuery } from '@mui/material';
-import OutlinedInput from '@mui/material/OutlinedInput';
-import { Button, Grid } from '@mui/material';
+import { MenuItem, Select, Stack, useMediaQuery } from '@mui/material';
+import { Button } from '@mui/material';
 import MailIcon from '@mui/icons-material/Mail';
 import { useState } from 'react';
-import Modal from '@mui/material/Modal';
-import MemberPopup from './MemberPopup';
+import MemberListFilter from 'components/common/MemberListFilter';
 
 function generateRandomName(length) {
   const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
@@ -47,7 +41,6 @@ function generateRandomDateTime() {
     .padStart(2, '0')}:${second.toString().padStart(2, '0')}`;
 }
 const memberStatus = ['Membership not verified', 'Membership suspension', 'Withdrawal', 'Change phone number'];
-const memberStatusFilter = ['General Membership', 'Black', 'Stop', 'withdrawal', 'Email'];
 
 function createData(id) {
   return {
@@ -249,7 +242,6 @@ const MemberList = () => {
   const [selected, setSelected] = useState([]);
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(20);
-  const [open, setMemberPopupOpen] = useState(false);
 
   const handleRequestSort = (event, property) => {
     const isAsc = orderBy === property && order === 'asc';
@@ -301,8 +293,6 @@ const MemberList = () => {
 
   // Common styles
   const textGray = '#666666';
-  const secondaryMain = theme.palette.secondary.main;
-  const secondary400 = theme.palette.secondary[400];
   const secondary600 = theme.palette.secondary[600];
   const containedBtnStyle = {
     ml: '0.5rem',
@@ -314,9 +304,6 @@ const MemberList = () => {
     '&:hover': {
       backgroundColor: secondary600
     }
-  };
-  const inputStyle = {
-    p: '4px 14px 4px 12px'
   };
   const tableCellStyle = {
     color: textGray,
@@ -357,120 +344,19 @@ const MemberList = () => {
     );
   };
 
-  const MemberStatusFilter = () => {
-    const [checkedStatus, setCheckedStatus] = useState({});
+  const openWindowPopup = () => {
+    const url = '/memberManage/memberDetails';
+    const windowName = '_blank';
+    const windowFeatures = 'width=1200,height=1200';
 
-    const handleChange = (status) => (event) => {
-      setCheckedStatus({
-        ...checkedStatus,
-        [status]: event.target.checked
-      });
-    };
-
-    return (
-      <FormGroup sx={{ display: 'flex', flexDirection: 'row', gap: 1 }}>
-        {memberStatusFilter.map((status) => (
-          <FormControlLabel
-            key={status}
-            control={<Checkbox checked={checkedStatus[status] || false} onChange={handleChange(status)} sx={{ display: 'none' }} />}
-            label={status}
-            sx={{
-              ...inputStyle,
-              m: '0',
-              color: checkedStatus[status] ? 'white' : secondaryMain,
-              border: `1px solid ${secondary400}`,
-              borderRadius: '4px',
-              backgroundColor: checkedStatus[status] ? secondary600 : 'trasnparent',
-              userSelect: 'none'
-            }}
-          />
-        ))}
-      </FormGroup>
-    );
+    // Open the popup window
+    window.open(url, windowName, windowFeatures);
   };
 
   return (
     <>
-      {/* Member details pop-up */}
-      <Modal
-        open={open}
-        onClose={() => setMemberPopupOpen(false)}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
-      >
-        <>
-          <MemberPopup handleClose={() => setMemberPopupOpen(false)}></MemberPopup>
-        </>
-      </Modal>
-
       {/* Filter */}
-      <Grid container sx={{ ml: '-0.5rem', mt: 0, mb: 2, width: '100%', alignItems: 'center' }}>
-        <Grid item xs={12} md={6} lg={3} xl={3}>
-          <Stack direction="row">
-            <Grid item xs={6} sx={{ p: '0.5rem' }}>
-              <FormControl sx={{ minWidth: '100%' }}>
-                <Select
-                  value="10"
-                  displayEmpty
-                  sx={{
-                    '& .MuiSelect-select': inputStyle
-                  }}
-                >
-                  <MenuItem value={10}>Ten</MenuItem>
-                  <MenuItem value={20}>Twenty</MenuItem>
-                  <MenuItem value={30}>Thirty</MenuItem>
-                </Select>
-              </FormControl>
-            </Grid>
-            <Grid item xs={6} sx={{ p: '0.5rem' }}>
-              <FormControl sx={{ minWidth: '100%' }}>
-                <OutlinedInput
-                  placeholder="Search"
-                  sx={{
-                    '& .MuiInputBase-input': inputStyle
-                  }}
-                />
-              </FormControl>
-            </Grid>
-          </Stack>
-        </Grid>
-        <Grid item xs={12} sm={12} md lg={4} xl={4} sx={{ p: '0.5rem' }}>
-          <Stack direction="row" alignItems="center">
-            <label style={{ color: textGray, fontWeight: '600', marginRight: '0.5rem' }}>Date</label>
-            <LocalizationProvider dateAdapter={AdapterDayjs}>
-              <DemoContainer components={['DatePicker']} sx={{ pt: '0', maxWidth: '100%', overflow: 'hidden' }}>
-                <DemoItem>
-                  <DatePicker
-                    sx={{
-                      '& .MuiInputBase-input': inputStyle
-                    }}
-                  />
-                </DemoItem>
-              </DemoContainer>
-            </LocalizationProvider>
-            <label style={{ margin: '0 0.5rem' }}>-</label>
-            <LocalizationProvider dateAdapter={AdapterDayjs}>
-              <DemoContainer components={['DatePicker']} sx={{ pt: '0', maxWidth: '100%', overflow: 'hidden' }}>
-                <DemoItem>
-                  <DatePicker
-                    sx={{
-                      '& .MuiInputBase-input': inputStyle
-                    }}
-                  />
-                </DemoItem>
-              </DemoContainer>
-            </LocalizationProvider>
-            <Button variant="contained" size="small" sx={containedBtnStyle}>
-              search
-            </Button>
-          </Stack>
-        </Grid>
-        <Grid item xs={12} sm={12} md lg={5} xl={5} sx={{ p: '0.5rem' }}>
-          <Stack direction="row" sx={{ columnGap: '0.5rem', justifyContent: mediumScreen ? 'start' : 'end' }}>
-            <MemberStatusFilter />
-          </Stack>
-        </Grid>
-      </Grid>
+      <MemberListFilter />
 
       <Box sx={{ width: '100%' }}>
         <Paper sx={{ width: '100%', mb: 2 }}>
@@ -508,37 +394,37 @@ const MemberList = () => {
                           onClick={(event) => handleClick(event, row.id)}
                         />
                       </TableCell>
-                      <TableCell onClick={() => setMemberPopupOpen(true)} align="center" sx={tableCellStyle}>
+                      <TableCell onClick={() => openWindowPopup()} align="center" sx={tableCellStyle}>
                         {row.PartnerNickName}
                       </TableCell>
-                      <TableCell onClick={() => setMemberPopupOpen(true)} align="center" sx={tableCellStyle}>
+                      <TableCell onClick={() => openWindowPopup()} align="center" sx={tableCellStyle}>
                         {row.MemberNickName}
                       </TableCell>
-                      <TableCell onClick={() => setMemberPopupOpen(true)} align="center" sx={tableCellStyle}>
+                      <TableCell onClick={() => openWindowPopup()} align="center" sx={tableCellStyle}>
                         {row.RemainMoney} won
                       </TableCell>
-                      <TableCell onClick={() => setMemberPopupOpen(true)} align="center" sx={tableCellStyle}>
+                      <TableCell onClick={() => openWindowPopup()} align="center" sx={tableCellStyle}>
                         {row.RemainPoint}
                       </TableCell>
-                      <TableCell onClick={() => setMemberPopupOpen(true)} align="center" sx={tableCellStyle}>
+                      <TableCell onClick={() => openWindowPopup()} align="center" sx={tableCellStyle}>
                         {row.TotalChargeMoney} won
                       </TableCell>
-                      <TableCell onClick={() => setMemberPopupOpen(true)} align="center" sx={tableCellStyle}>
+                      <TableCell onClick={() => openWindowPopup()} align="center" sx={tableCellStyle}>
                         {row.TotalExchangeMoney} won
                       </TableCell>
-                      <TableCell onClick={() => setMemberPopupOpen(true)} align="center" sx={tableCellStyle}>
+                      <TableCell onClick={() => openWindowPopup()} align="center" sx={tableCellStyle}>
                         {row.TotalBetMoney} won
                       </TableCell>
-                      <TableCell onClick={() => setMemberPopupOpen(true)} align="center" sx={tableCellStyle}>
+                      <TableCell onClick={() => openWindowPopup()} align="center" sx={tableCellStyle}>
                         {row.TotalHitMoney} won
                       </TableCell>
-                      <TableCell onClick={() => setMemberPopupOpen(true)} align="center" sx={tableCellStyle}>
+                      <TableCell onClick={() => openWindowPopup()} align="center" sx={tableCellStyle}>
                         {row.LastConnectDate}
                       </TableCell>
-                      <TableCell onClick={() => setMemberPopupOpen(true)} align="center" sx={tableCellStyle}>
+                      <TableCell onClick={() => openWindowPopup()} align="center" sx={tableCellStyle}>
                         {row.CreateDate}
                       </TableCell>
-                      <TableCell onClick={() => setMemberPopupOpen(true)} align="center" sx={tableCellStyle}>
+                      <TableCell onClick={() => openWindowPopup()} align="center" sx={tableCellStyle}>
                         {row.MemberLevel}
                       </TableCell>
                       <TableCell align="center" sx={tableCellStyle}>

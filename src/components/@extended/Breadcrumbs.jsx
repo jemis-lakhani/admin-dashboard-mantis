@@ -48,6 +48,7 @@ const Breadcrumbs = ({ navigation, title, ...others }) => {
   let itemContent;
   let breadcrumbContent = <Typography />;
   let itemTitle = '';
+  let itemHeader = '';
 
   if (main && main.type === 'group') {
     mainContent = (
@@ -61,7 +62,12 @@ const Breadcrumbs = ({ navigation, title, ...others }) => {
   if (item && item.type === 'item') {
     itemTitle = item.title;
     itemContent = (
-      <Typography variant="subtitle1" color="textPrimary">
+      <Typography variant="h6" sx={{ textDecoration: 'none' }} color="textSecondary">
+        {itemTitle}
+      </Typography>
+    );
+    itemHeader = (
+      <Typography variant="h4" color="textPrimary">
         {itemTitle}
       </Typography>
     );
@@ -70,10 +76,13 @@ const Breadcrumbs = ({ navigation, title, ...others }) => {
     if (item.breadcrumbs !== false) {
       breadcrumbContent = (
         <MainCard border={false} sx={{ mb: 1, bgcolor: 'transparent' }} {...others} content={false}>
-          <Grid container direction="column" justifyContent="flex-start" alignItems="flex-start" spacing={1} m={0}>
+          <Grid container direction="row" justifyContent="space-between" alignItems="center" spacing={1} m={0} sx={{ width: '100%' }}>
+            <Grid item sx={{ p: '0 !important' }}>
+              {itemHeader}
+            </Grid>
             <Grid item sx={{ p: '0 !important' }}>
               <MuiBreadcrumbs aria-label="breadcrumb">
-                <HomeOutlinedIcon sx={{ pt: '2px' }} />
+                <HomeOutlinedIcon sx={{ mt: '4px', height: '1.25rem', width: '1.25rem' }} />
                 {mainContent}
                 {itemContent}
               </MuiBreadcrumbs>

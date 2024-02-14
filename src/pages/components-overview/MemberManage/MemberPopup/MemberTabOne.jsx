@@ -23,7 +23,7 @@ const cellStyle = {
   padding: '6px'
 };
 
-const MemberTabOne = ({ handleClose }) => {
+const MemberTabOne = () => {
   //popover 1
   const [anchor1, setAnchor1] = useState(null);
   const handleClick1 = (event) => {
@@ -279,7 +279,7 @@ const MemberTabOne = ({ handleClose }) => {
         </Table>
       </TableContainer>
       <Stack spacing={1} direction="row-reverse" sx={{ pt: 2 }}>
-        <Button disableElevation size="small" color="secondary" variant="contained" onClick={handleClose}>
+        <Button disableElevation size="small" color="secondary" variant="contained">
           Close
         </Button>
         <Button disableElevation size="small" color="primary" variant="contained" sx={{ color: 'white' }}>

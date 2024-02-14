@@ -11,8 +11,6 @@ import { TabPanel } from '@mui/base/TabPanel';
 import { Tab, tabClasses } from '@mui/base/Tab';
 import MemberTabOne from './MemberTabOne';
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
-import CancelIcon from '@mui/icons-material/Cancel';
-import IconButton from '@mui/material/IconButton';
 
 const level = 2;
 let levelColor;
@@ -61,13 +59,11 @@ const modalStyle = {
   left: '50%',
   transform: 'translate(-50%, -50%)',
   width: '98%',
-  height: '90%',
+  height: '98%',
   overflow: 'scroll',
   bgcolor: 'background.paper',
-  border: '2px solid #000',
   boxShadow: 24,
-  p: 2,
-  mt: 4
+  p: 2
 };
 
 const MemberPopup = ({ handleClose }) => {
@@ -76,9 +72,6 @@ const MemberPopup = ({ handleClose }) => {
       <Box sx={{ display: 'flex', gap: 1, alignItems: 'center', fontSize: 'larger', mb: 2 }}>
         <AccountCircleOutlinedIcon sx={{ fontSize: 'x-large' }} />
         <span>User Name</span>
-        <IconButton aria-label="close" onClick={handleClose} sx={{ ml: 'auto' }}>
-          <CancelIcon />
-        </IconButton>
       </Box>
       <TableContainer component={Paper}>
         <Table>
@@ -151,7 +144,7 @@ const MemberPopup = ({ handleClose }) => {
           </TabsList>
           <Box>
             <TabPanel className="CustomTabPanelIntroduction" value={0}>
-              <MemberTabOne handleClose={handleClose}></MemberTabOne>
+              <MemberTabOne></MemberTabOne>
             </TabPanel>
             <TabPanel className="CustomTabPanelIntroduction" value={1}>
               Content 2

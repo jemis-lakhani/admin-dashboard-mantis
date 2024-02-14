@@ -6,6 +6,7 @@ import { Navigate } from 'react-router-dom';
 const DashboardDefault = Loadable(lazy(() => import('pages/dashboard')));
 
 const MemberList = Loadable(lazy(() => import('pages/components-overview/MemberManage/MemberList')));
+
 const AccessorList = Loadable(lazy(() => import('pages/components-overview/MemberManage/AccessorList')));
 const MemberNote = Loadable(lazy(() => import('pages/components-overview/MemberManage/MemberNote')));
 const MiniGames = Loadable(lazy(() => import('pages/components-overview/GameManage/MiniGames')));
@@ -23,6 +24,7 @@ const PartnerList = Loadable(lazy(() => import('pages/components-overview/Partne
 const PartnerRegistration = Loadable(lazy(() => import('pages/components-overview/PartnerManage/PartnerRegistration')));
 const Preferences = Loadable(lazy(() => import('pages/components-overview/Preferences')));
 const Administrator = Loadable(lazy(() => import('pages/components-overview/Administrator')));
+const CollectionPage = Loadable(lazy(() => import('components/CollectionPage')));
 
 const MainRoutes = {
   path: '/',
@@ -131,6 +133,10 @@ const MainRoutes = {
     {
       path: '/administrator',
       element: <Administrator />
+    },
+    {
+      path: '/collectionPage',
+      element: <CollectionPage />
     }
   ]
 };

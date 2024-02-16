@@ -5,11 +5,32 @@ import DownloadForOfflineOutlinedIcon from '@mui/icons-material/DownloadForOffli
 import Notification from './Notification';
 import DataInformation from './DataInformation/index';
 import AccountStatistics from './AccountStatistics/index';
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 const HeaderContent = () => {
   const matchesXs = useMediaQuery((theme) => theme.breakpoints.down('md'));
   const matchesLg = useMediaQuery((theme) => theme.breakpoints.down('xl'));
   const theme = useTheme();
+  const navigate = useNavigate();
+
+  const handleLogout = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.post(
+        `${process.env.REACT_APP_BACKEND_URL}admin/login/logout`,
+        {},
+        {
+          withCredentials: true
+        }
+      );
+      if (response.status === 200) {
+        navigate('/login');
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
   return (
     <>
       {/* Number of members */}
@@ -50,6 +71,7 @@ const HeaderContent = () => {
 
       {/* Logout */}
       <Button
+        onClick={handleLogout}
         variant="outlined"
         size="small"
         sx={{

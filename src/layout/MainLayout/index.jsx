@@ -11,6 +11,7 @@ import axios from 'axios';
 import { notifications } from 'store/reducers/menu';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useNavigate } from 'react-router-dom';
 
 const MainLayout = () => {
   const dispatch = useDispatch();
@@ -20,11 +21,39 @@ const MainLayout = () => {
   const [open, setOpen] = useState(drawerOpen);
   const [navigation, setNavigation] = useState([]);
   const [notificationsArray, setNotifications] = useState([]);
+  const navigate = useNavigate();
 
   const handleDrawerToggle = () => {
     setOpen(!open);
     dispatch(openDrawer({ drawerOpen: !open }));
   };
+
+  useEffect(() => {
+    const authenticateSession = async () => {
+      try {
+        const response = await axios.post(
+          `${process.env.REACT_APP_BACKEND_URL}admin/setting`,
+          {},
+          {
+            withCredentials: true
+          }
+        );
+        if (response.status !== 200) {
+          navigate('/login');
+        }
+      } catch (error) {
+        navigate('/login');
+        console.error({ error });
+      }
+    };
+
+    const timer = setInterval(() => {
+      authenticateSession();
+    }, 1 * 30000); // 30 seconds
+    authenticateSession();
+
+    return () => clearInterval(timer);
+  }, []);
 
   const showToast = (notification) => {
     if (notification.type === 'success') {
@@ -77,7 +106,9 @@ const MainLayout = () => {
   useEffect(() => {
     const getMenuItems = async () => {
       try {
-        const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}menu/list`);
+        const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}menu/list`, {
+          withCredentials: true
+        });
         dispatch(menuItems({ menuItems: response.data }));
         setNavigation(response.data);
       } catch (error) {
@@ -91,7 +122,9 @@ const MainLayout = () => {
   useEffect(() => {
     const getNotifications = async () => {
       try {
-        const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}menu/list/notifications`);
+        const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}menu/list/notifications`, {
+          withCredentials: true
+        });
         dispatch(notifications({ notifications: response?.data }));
         setNotifications(response?.data);
       } catch (error) {

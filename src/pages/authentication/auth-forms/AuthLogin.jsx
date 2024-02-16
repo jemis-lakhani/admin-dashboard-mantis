@@ -1,17 +1,37 @@
 import React from 'react';
 import { TextField, Button, Typography, Container, Box, Grid } from '@mui/material';
 import ReactCountryFlag from 'react-country-flag';
+import axios from 'axios';
 import { useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
 
 function AuthLogin() {
   const {
     register,
+    reset,
+    setError,
     handleSubmit,
     formState: { errors }
   } = useForm();
+  const navigate = useNavigate();
 
-  const onSubmit = (data) => {
-    console.log({ data });
+  const onSubmit = async (data) => {
+    try {
+      const response = await axios.post(`${process.env.REACT_APP_BACKEND_URL}admin/login`, data, {
+        withCredentials: true
+      });
+      if (response.status === 200) {
+        navigate('/');
+      }
+    } catch (error) {
+      reset();
+      setError('username', {
+        message: 'Invalid credentials.'
+      });
+      setError('password', {
+        message: 'Invalid credentials.'
+      });
+    }
   };
 
   return (

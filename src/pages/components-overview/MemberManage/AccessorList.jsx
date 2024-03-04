@@ -9,10 +9,9 @@ const AccessorList = () => {
   const handleClose = () => setOpen(false);
   return (
     <>
-      <Button onClick={handleOpen}>Open modal</Button>
-      <Modal open={open} onClose={handleClose} aria-labelledby="modal-modal-title" aria-describedby="modal-modal-description">
-        <MemberPopup handleClose={handleClose}></MemberPopup>
-      </Modal>
+      <div style={{ textAlign: 'center' }}>
+        <h2>AccessorList</h2>
+      </div>
     </>
   );
 };

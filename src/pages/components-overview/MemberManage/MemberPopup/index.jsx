@@ -11,6 +11,8 @@ import { TabPanel } from '@mui/base/TabPanel';
 import { Tab, tabClasses } from '@mui/base/Tab';
 import MemberTabOne from './MemberTabOne';
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
+import { useTranslation } from 'react-i18next';
+import { useEffect, useState } from 'react';
 
 const level = 2;
 let levelColor;
@@ -67,6 +69,17 @@ const modalStyle = {
 };
 
 const MemberPopup = ({ handleClose }) => {
+  const [i18n, setI18n] = useState(null);
+  useEffect(() => {
+    const interval = setInterval(() => {
+      if (window.i18nInstance && typeof window.i18nInstance.t === 'function') {
+        setI18n(window.i18nInstance);
+        clearInterval(interval);
+      }
+    }, 100);
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <Box sx={modalStyle}>
       <Box sx={{ display: 'flex', gap: 1, alignItems: 'center', fontSize: 'larger', mb: 2 }}>
@@ -77,30 +90,30 @@ const MemberPopup = ({ handleClose }) => {
         <Table>
           <TableBody>
             <TableRow>
-              <TableCell rowSpan={2} style={{ ...cellStyle, width: 100, backgroundColor: '#F5F5F5' }}>
+              <TableCell rowSpan={2} style={{ ...cellStyle, width: '15%', backgroundColor: '#F5F5F5' }}>
                 <div style={{ display: 'flex', gap: 10, width: 'fit-content', margin: 'auto' }}>
                   <Avatar sx={{ bgcolor: levelColor, height: 26, width: 26 }}>{level}</Avatar>
                   <span style={{ justifyContent: 'center' }}>Lv.{level}</span>
                 </div>
               </TableCell>
-              <TableCell align="center" style={{ ...cellStyle, backgroundColor: '#F5F5F5' }}>
-                파트너
+              <TableCell align="center" style={{ ...cellStyle, width: '15%', backgroundColor: '#F5F5F5' }}>
+                {i18n && i18n.t('member_popup.partner')}
               </TableCell>
-              <TableCell style={cellStyle}>test55[부스당] &gt; esse[라이트] &gt; avav1[에이브이]</TableCell>
-              <TableCell align="center" style={{ ...cellStyle, backgroundColor: '#F5F5F5' }}>
-                아이디/닉네임
+              <TableCell style={{ ...cellStyle, width: '25%' }}>test55[부스당]</TableCell>
+              <TableCell align="center" style={{ ...cellStyle, width: '15%', backgroundColor: '#F5F5F5' }}>
+                {i18n && i18n.t('member_popup.nickname')}
               </TableCell>
-              <TableCell style={cellStyle}>forgetabout4[갓마탕]</TableCell>
+              <TableCell style={{ ...cellStyle, width: '25%' }}>forgetabout4[갓마탕]</TableCell>
             </TableRow>
             <TableRow>
-              <TableCell align="center" style={{ ...cellStyle, backgroundColor: '#F5F5F5' }}>
-                머 니
+              <TableCell align="center" style={{ ...cellStyle, width: '15%', backgroundColor: '#F5F5F5' }}>
+                {i18n && i18n.t('member_popup.money')}
               </TableCell>
-              <TableCell style={cellStyle}>0원</TableCell>
-              <TableCell align="center" style={{ ...cellStyle, backgroundColor: '#F5F5F5' }}>
-                포인트
+              <TableCell style={{ ...cellStyle, width: '25%' }}>0원</TableCell>
+              <TableCell align="center" style={{ ...cellStyle, width: '15%', backgroundColor: '#F5F5F5' }}>
+                {i18n && i18n.t('member_popup.points')}
               </TableCell>
-              <TableCell style={cellStyle}>0P</TableCell>
+              <TableCell style={{ ...cellStyle, width: '25%' }}>0P</TableCell>
             </TableRow>
           </TableBody>
         </Table>
@@ -108,43 +121,45 @@ const MemberPopup = ({ handleClose }) => {
       <Box sx={{ width: '100%', typography: 'body2' }}>
         <Tabs defaultValue={0} variant="scrollable">
           <TabsList className="CustomTabsListIntroduction">
-            <Tab className="CustomTabIntroduction" value={0}>
-              Option 1
-            </Tab>
-            <Tab className="CustomTabIntroduction" value={1}>
-              Option 2
-            </Tab>
-            <Tab className="CustomTabIntroduction" value={2}>
-              Option 3
-            </Tab>
-            <Tab className="CustomTabIntroduction" value={3}>
-              Option 4
-            </Tab>
-            <Tab className="CustomTabIntroduction" value={4}>
-              Option 5
-            </Tab>
-            <Tab className="CustomTabIntroduction" value={5}>
-              Option 6
-            </Tab>
-            <Tab className="CustomTabIntroduction" value={6}>
-              Option 7
-            </Tab>
-            <Tab className="CustomTabIntroduction" value={7}>
-              Option 8
-            </Tab>
-            <Tab className="CustomTabIntroduction" value={8}>
-              Option 9
-            </Tab>
-            <Tab className="CustomTabIntroduction" value={9}>
-              Option 10
-            </Tab>
-            <Tab className="CustomTabIntroduction" value={10}>
-              Option 11
-            </Tab>
+            <Box sx={{ display: 'flex', gap: 1, minWidth: '980px' }}>
+              <Tab className="CustomTabIntroduction" value={0}>
+                {i18n && i18n.t('member_popup.more_information')}
+              </Tab>
+              <Tab className="CustomTabIntroduction" value={1}>
+                {i18n && i18n.t('member_popup.betting_limit_setting')}
+              </Tab>
+              <Tab className="CustomTabIntroduction" value={2}>
+                {i18n && i18n.t('member_popup.rolling_setting')}
+              </Tab>
+              <Tab className="CustomTabIntroduction" value={3}>
+                {i18n && i18n.t('member_popup.balance_setting')}
+              </Tab>
+              <Tab className="CustomTabIntroduction" value={4}>
+                {i18n && i18n.t('member_popup.betting_details')}
+              </Tab>
+              <Tab className="CustomTabIntroduction" value={5}>
+                {i18n && i18n.t('member_popup.charging_history')}
+              </Tab>
+              <Tab className="CustomTabIntroduction" value={6}>
+                {i18n && i18n.t('member_popup.currency_exchange_details')}
+              </Tab>
+              <Tab className="CustomTabIntroduction" value={7}>
+                {i18n && i18n.t('member_popup.money_details')}
+              </Tab>
+              <Tab className="CustomTabIntroduction" value={8}>
+                {i18n && i18n.t('member_popup.point_details')}
+              </Tab>
+              <Tab className="CustomTabIntroduction" value={9}>
+                {i18n && i18n.t('member_popup.connection_details')}
+              </Tab>
+              <Tab className="CustomTabIntroduction" value={10}>
+                {i18n && i18n.t('member_popup.note')}
+              </Tab>
+            </Box>
           </TabsList>
           <Box>
             <TabPanel className="CustomTabPanelIntroduction" value={0}>
-              <MemberTabOne></MemberTabOne>
+              <MemberTabOne handleClose={handleClose}></MemberTabOne>
             </TabPanel>
             <TabPanel className="CustomTabPanelIntroduction" value={1}>
               Content 2
@@ -193,6 +208,7 @@ function Styles() {
           gap: 5px;
           padding-bottom: 0.5rem;
           padding-top: 1rem;
+          overflow-x: auto;
         }
 
         .CustomTabIntroduction {
@@ -201,6 +217,7 @@ function Styles() {
           padding: 6px;
           border-radius: 5px;
           cursor: pointer;
+          min-width: 4rem;
         }
 
         .CustomTabIntroduction.${tabClasses.selected} {

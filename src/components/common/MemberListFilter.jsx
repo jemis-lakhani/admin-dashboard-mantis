@@ -1,20 +1,22 @@
-import React from 'react';
+import React, { useTransition } from 'react';
 import { Grid, Stack, useMediaQuery, useTheme } from '../../../node_modules/@mui/material/index';
 import DateRangeComponent from './DateRangeComponent';
 import CustomCheckbox from './CustomCheckbox';
 import SelectComponent from './SelectComponent';
 import InputComponent from './InputComponent';
+import { useTranslation } from 'react-i18next';
 
-const memberStatusFilter = ['Membership', 'Black', 'Stop', 'withdrawal', 'Email'];
+const memberStatusFilter = ['membership', 'black', 'stop', 'withdrawal', 'email'];
 const items = [
-  { value: 1, label: 'One' },
-  { value: 2, label: 'Two' },
-  { value: 3, label: 'Three' },
-  { value: 4, label: 'Four' },
-  { value: 5, label: 'Five' }
+  { value: 1, label: 'one' },
+  { value: 2, label: 'two' },
+  { value: 3, label: 'three' },
+  { value: 4, label: 'four' },
+  { value: 5, label: 'five' }
 ];
 
 const MemberListFilter = () => {
+  const { t } = useTransition();
   const theme = useTheme();
   const mediumScreen = useMediaQuery(theme.breakpoints.down('lg'));
 

@@ -7,8 +7,11 @@ import DataInformation from './DataInformation/index';
 import AccountStatistics from './AccountStatistics/index';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { useTranslation } from 'react-i18next';
+import CountryDropdown from './CountryDropdown/index';
 
 const HeaderContent = () => {
+  const { t } = useTranslation();
   const matchesXs = useMediaQuery((theme) => theme.breakpoints.down('md'));
   const matchesLg = useMediaQuery((theme) => theme.breakpoints.down('xl'));
   const theme = useTheme();
@@ -31,6 +34,7 @@ const HeaderContent = () => {
       console.error(error);
     }
   };
+
   return (
     <>
       {/* Number of members */}
@@ -61,6 +65,9 @@ const HeaderContent = () => {
 
       {matchesXs && <Box sx={{ width: '100%', ml: 1 }} />}
 
+      {/* Time  & County Dropdown */}
+      <CountryDropdown />
+
       {/* Notifications */}
       <Notification />
 
@@ -83,6 +90,7 @@ const HeaderContent = () => {
           borderWidth: '2px',
           borderColor: 'gray',
           fontWeight: '700',
+          width: 'auto',
           mx: 0.5,
           '&:hover': {
             bgcolor: theme.palette.grey[300],
@@ -92,7 +100,7 @@ const HeaderContent = () => {
           }
         }}
       >
-        Logout
+        {t('common.logout')}
       </Button>
     </>
   );

@@ -1,0 +1,23 @@
+{
+    "dashboard": {
+        "title": "대시보드",
+        "views": "조회수",
+        "vs_yesterday": "어제 대비",
+        "total_users": "총 사용자",
+        "total_order": "총 주문",
+        "total_sales": "총 매출",
+        "today": "오늘",
+        "unique_visitor": "고유 방문자",
+        "month": "월",
+        "week": "주",
+        "income_overview": "수입 개요",
+        "net_profit": "순이익",
+        "revenue": "수익",
+        "recent_orders": "최근 주문",
+        "all_messages": "모든 메시지",
+        "tracking_no": "추적 번호",
+        "product_name": "제품명",
+        "status": "상태",
+        "total_amount": "총 금액"
+    }
+}

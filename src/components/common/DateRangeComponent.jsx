@@ -4,8 +4,10 @@ import { DemoContainer, DemoItem } from '@mui/x-date-pickers/internals/demo';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import { useTranslation } from 'react-i18next';
 
 const DateRangeComponent = () => {
+  const { t, i18n } = useTranslation();
   const theme = useTheme();
   const inputStyle = {
     p: '4px 14px 4px 12px'
@@ -49,7 +51,7 @@ const DateRangeComponent = () => {
           </DemoContainer>
         </LocalizationProvider>
         <Button variant="contained" size="small" sx={containedBtnStyle} disableRipple>
-          search
+          {t('common.search')}
         </Button>
       </Stack>
     </>

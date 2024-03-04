@@ -19,6 +19,8 @@ import { Button } from '@mui/material';
 import MailIcon from '@mui/icons-material/Mail';
 import { useState } from 'react';
 import MemberListFilter from 'components/common/MemberListFilter';
+import i18n from 'i18n/i18n';
+import { useTranslation } from 'react-i18next';
 
 function generateRandomName(length) {
   const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
@@ -40,7 +42,7 @@ function generateRandomDateTime() {
     .toString()
     .padStart(2, '0')}:${second.toString().padStart(2, '0')}`;
 }
-const memberStatus = ['Membership not verified', 'Membership suspension', 'Withdrawal', 'Change phone number'];
+const memberStatus = ['membership_not_verified', 'membership_suspension', 'withdrawal', 'change_phone_number'];
 
 function createData(id) {
   return {
@@ -97,83 +99,84 @@ const headCells = [
     id: 'PartnerNickName',
     numeric: false,
     isSortable: false,
-    label: 'Partner'
+    label: 'partner'
   },
   {
     id: 'MemberNickName',
     numeric: false,
     isSortable: false,
-    label: 'ID[NickName]'
+    label: 'nickname'
   },
   {
     id: 'RemainMoney',
     numeric: true,
     isSortable: true,
-    label: 'Money'
+    label: 'money'
   },
   {
     id: 'RemainPoint',
     numeric: true,
     isSortable: true,
-    label: 'Points'
+    label: 'points'
   },
   {
     id: 'TotalChargeMoney',
     numeric: true,
     isSortable: true,
-    label: 'Charge Amount'
+    label: 'charge_amount'
   },
   {
     id: 'TotalExchangeMoney',
     numeric: true,
     isSortable: true,
-    label: 'Exchange Amount'
+    label: 'exchange_amount'
   },
   {
     id: 'TotalBetMoney',
     numeric: true,
     isSortable: true,
-    label: 'Bet Amount'
+    label: 'bet_amount'
   },
   {
     id: 'TotalHitMoney',
     numeric: false,
     isSortable: true,
-    label: 'Winning Amount'
+    label: 'winning_amount'
   },
   {
     id: 'LastConnectDate',
     numeric: false,
     isSortable: true,
-    label: 'Access Date'
+    label: 'access_date'
   },
   {
     id: 'CreateDate',
     numeric: false,
     isSortable: true,
-    label: 'Join Date'
+    label: 'join_date'
   },
   {
     id: 'MemberLevel',
     numeric: false,
     isSortable: false,
-    label: 'Level'
+    label: 'level'
   },
   {
     id: 'note',
     numeric: false,
     isSortable: false,
-    label: 'Note'
+    label: 'note'
   },
   {
     id: 'function',
     numeric: false,
     isSortable: false,
-    label: 'Function'
+    label: 'function'
   }
 ];
 
 function EnhancedTableHead(props) {
+  const { t } = useTranslation();
   const theme = useTheme();
   const { onSelectAllClick, order, orderBy, numSelected, rowCount, onRequestSort } = props;
   const createSortHandler = (property) => (event) => {
@@ -206,7 +209,7 @@ function EnhancedTableHead(props) {
                 direction={orderBy === headCell.id ? order : 'asc'}
                 onClick={createSortHandler(headCell.id)}
               >
-                {headCell.label}
+                {t(`member_list.${headCell.label}`)}
                 {orderBy === headCell.id && (
                   <Box component="span" sx={visuallyHidden}>
                     {order === 'desc' ? 'sorted descending' : 'sorted ascending'}
@@ -215,7 +218,7 @@ function EnhancedTableHead(props) {
               </TableSortLabel>
             ) : (
               <Typography variant="body1" fontWeight={600}>
-                {headCell.label}
+                {t(`member_list.${headCell.label}`)}
               </Typography>
             )}
           </TableCell>
@@ -235,6 +238,7 @@ EnhancedTableHead.propTypes = {
 };
 
 const MemberList = () => {
+  const { t } = useTranslation();
   const theme = useTheme();
   const mediumScreen = useMediaQuery(theme.breakpoints.down('lg'));
   const [order, setOrder] = useState('desc');
@@ -337,7 +341,7 @@ const MemberList = () => {
       >
         {memberStatus?.map((status) => (
           <MenuItem key={status} value={status}>
-            {status}
+            {t(`select_item.${status}`)}
           </MenuItem>
         ))}
       </Select>
@@ -349,8 +353,15 @@ const MemberList = () => {
     const windowName = '_blank';
     const windowFeatures = 'width=1200,height=1200';
 
+    const onLoadCallback = () => {
+      console.log({ i18n });
+      const i18nInstance = i18n;
+      newWindow.i18nInstance = i18nInstance;
+    };
+
     // Open the popup window
-    window.open(url, windowName, windowFeatures);
+    const newWindow = window.open(url, windowName, windowFeatures);
+    newWindow.onload = onLoadCallback;
   };
 
   return (
@@ -437,7 +448,7 @@ const MemberList = () => {
                             onChange={(selectedValue) => handleStatusChange(row.id, selectedValue)}
                           />
                           <Button variant="contained" size="small" sx={containedBtnStyle}>
-                            OK
+                            {t('common.ok')}
                           </Button>
                         </Stack>
                       </TableCell>
@@ -464,6 +475,7 @@ const MemberList = () => {
             page={page}
             onPageChange={handleChangePage}
             onRowsPerPageChange={handleChangeRowsPerPage}
+            labelRowsPerPage={t('common.rows_per_page')}
             sx={{ display: 'flex' }}
           />
         </Paper>

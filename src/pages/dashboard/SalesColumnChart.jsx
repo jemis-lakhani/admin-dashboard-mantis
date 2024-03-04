@@ -5,6 +5,7 @@ import { useTheme } from '@mui/material/styles';
 
 // third-party
 import ReactApexChart from 'react-apexcharts';
+import { useTranslation } from 'react-i18next';
 
 // chart options
 const columnChartOptions = {
@@ -80,25 +81,29 @@ const columnChartOptions = {
 };
 
 const SalesColumnChart = () => {
+  const { t } = useTranslation();
   const theme = useTheme();
-
   const { primary, secondary } = theme.palette.text;
   const line = theme.palette.divider;
-
   const warning = theme.palette.warning.main;
   const primaryMain = theme.palette.primary.main;
   const successDark = theme.palette.success.dark;
+  const [series, setSeries] = useState([]);
 
-  const [series] = useState([
-    {
-      name: 'Net Profit',
-      data: [180, 90, 135, 114, 120, 145]
-    },
-    {
-      name: 'Revenue',
-      data: [120, 45, 78, 150, 168, 99]
-    }
-  ]);
+  useEffect(() => {
+    const net_profit = t('dashboard.net_profit');
+    const revenue = t('dashboard.revenue');
+    setSeries([
+      {
+        name: net_profit,
+        data: [180, 90, 135, 114, 120, 145]
+      },
+      {
+        name: revenue,
+        data: [120, 45, 78, 150, 168, 99]
+      }
+    ]);
+  }, [t]);
 
   const [options, setOptions] = useState(columnChartOptions);
 

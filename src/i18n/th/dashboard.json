@@ -1,0 +1,23 @@
+{
+    "dashboard": {
+        "title": "แดชบอร์ด",
+        "views": "จำนวนการเข้าชม",
+        "vs_yesterday": "เปรียบเทียบกับเมื่อวาน",
+        "total_users": "ผู้ใช้ทั้งหมด",
+        "total_order": "รายการสั่งซื้อทั้งหมด",
+        "total_sales": "ยอดขายทั้งหมด",
+        "today": "วันนี้",
+        "unique_visitor": "ผู้เยี่ยมชมที่ไม่ซ้ำกัน",
+        "month": "เดือน",
+        "week": "สัปดาห์",
+        "income_overview": "ภาพรวมรายได้",
+        "net_profit": "กำไรสุทธิ",
+        "revenue": "รายได้",
+        "recent_orders": "รายการสั่งซื้อล่าสุด",
+        "all_messages": "ข้อความทั้งหมด",
+        "tracking_no": "หมายเลขติดตาม",
+        "product_name": "ชื่อสินค้า",
+        "status": "สถานะ",
+        "total_amount": "ยอดรวม"
+    }
+}

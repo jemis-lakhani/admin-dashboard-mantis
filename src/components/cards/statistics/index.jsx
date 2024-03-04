@@ -11,6 +11,8 @@ import SupervisedUserCircleOutlinedIcon from '@mui/icons-material/SupervisedUser
 import GroupsIcon from '@mui/icons-material/Groups';
 import { useTheme } from '@mui/material/styles';
 
+import { useTranslation } from 'react-i18next';
+
 import MainCard from 'components/MainCard';
 
 const icons = {
@@ -29,6 +31,8 @@ const Statistics = ({ color, title, subtitle, icon, isLoss, count, percentage })
   const error = theme.palette.error.main;
   const success = theme.palette.success.main;
   const textSecondary = theme.palette.secondary.main;
+  const { t } = useTranslation();
+
   return (
     <MainCard contentSX={{ p: 2.25 }} sx={{ position: 'relative' }}>
       <Stack spacing={0.5}>
@@ -36,7 +40,7 @@ const Statistics = ({ color, title, subtitle, icon, isLoss, count, percentage })
           {icons[icon]}
         </Avatar>
         <Grid sx={{ position: 'absolute', top: '1rem', right: '1rem', margin: '0 !important' }}>
-          <Chip variant="combined" color={color} label="Today" size="small" sx={{ color: '#FFFFFF' }} />
+          <Chip variant="combined" color={color} label={t('dashboard.today')} size="small" sx={{ color: '#FFFFFF' }} />
         </Grid>
         <Grid container alignItems="center" justifyContent="space-between" marginTop="1rem !important">
           <Grid alignItems="center" justifyContent="space-between" sx={{ flexDirection: 'column' }}>

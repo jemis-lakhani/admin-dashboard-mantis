@@ -4,6 +4,7 @@ const initialState = {
   notifications: [],
   notificationCount: 0,
   menuItems: [],
+  adminDetails: { name: null, site: null },
   openItem: ['dashboard'],
   defaultId: 'dashboard',
   openComponent: 'buttons',
@@ -21,6 +22,9 @@ const menu = createSlice({
     },
     menuItems(state, action) {
       state.menuItems = action.payload.menuItems;
+    },
+    adminDetails(state, action) {
+      state.adminDetails = action.payload.adminDetails;
     },
     activeItem(state, action) {
       state.openItem = action.payload.openItem;
@@ -42,4 +46,4 @@ const menu = createSlice({
 
 export default menu.reducer;
 
-export const { notifications, menuItems, activeItem, activeComponent, openDrawer, openComponentDrawer } = menu.actions;
+export const { notifications, menuItems, adminDetails, activeItem, activeComponent, openDrawer, openComponentDrawer } = menu.actions;

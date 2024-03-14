@@ -18,14 +18,14 @@ const NavGroup = ({ item }) => {
   const [isChildActive, setisChildActive] = useState(false);
   const { pathname } = useLocation();
 
-  const itemIcon = item.icon ? item.icon : false;
+  const itemIcon = item.IconName ? item.IconName : false;
 
   const handleClick = () => {
     setOpen(!open);
   };
 
   useEffect(() => {
-    const childrenUrls = item.children.map((child) => child?.url);
+    const childrenUrls = item.children.map((child) => child?.MenuPath);
     if (childrenUrls.includes(pathname)) {
       setisChildActive(true);
     } else {
@@ -37,7 +37,7 @@ const NavGroup = ({ item }) => {
   const navCollapse = item.children?.map((menuItem) => {
     switch (menuItem.type) {
       case 'item':
-        return <NavItem key={menuItem.id} item={menuItem} level={1} />;
+        return <NavItem key={menuItem.MenuID} item={menuItem} level={1} />;
       default:
         return (
           <Typography key={menuItem.id} variant="h6" color="error" align="center">
@@ -104,7 +104,7 @@ const NavGroup = ({ item }) => {
         <ListItemText
           primary={
             <Typography variant="h6" sx={{ color: isChildActive ? iconSelectedColor : textColor }}>
-              {item.title}
+              {item.MenuName}
             </Typography>
           }
         />

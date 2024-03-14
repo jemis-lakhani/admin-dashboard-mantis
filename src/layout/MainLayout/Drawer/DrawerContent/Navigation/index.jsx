@@ -11,7 +11,7 @@ const Navigation = () => {
   const navGroups = menuItems?.map((item) => {
     switch (item.type) {
       case 'group':
-        return <NavGroup key={item.id} item={item} />;
+        return <NavGroup key={item.MenuID} item={item} />;
       case 'single-item':
         return <NavItem key={item.id} item={item} level={1} />;
       default:

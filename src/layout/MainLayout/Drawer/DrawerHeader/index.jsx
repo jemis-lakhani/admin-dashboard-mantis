@@ -10,8 +10,10 @@ import Divider from '@mui/material/Divider';
 import Tooltip from '@mui/material/Tooltip';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import FaceIcon from '@mui/icons-material/Face';
+import { useSelector } from 'react-redux';
 
 const DrawerHeader = ({ open }) => {
+  const { adminDetails } = useSelector((state) => state.menu);
   const theme = useTheme();
   const [anchorEl, setAnchorEl] = useState(null);
   const menuOpen = Boolean(anchorEl);
@@ -36,7 +38,7 @@ const DrawerHeader = ({ open }) => {
               aria-expanded={menuOpen ? 'true' : undefined}
               sx={{ color: 'inherit' }}
             >
-              James(manager)
+              {adminDetails.name} (manager)
             </Button>
           </Tooltip>
           <ArrowDropDownIcon fontSize="small" />

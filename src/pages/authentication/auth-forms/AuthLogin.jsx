@@ -1,9 +1,12 @@
-import React from 'react';
-import { TextField, Button, Typography, Container, Box, Grid } from '@mui/material';
+import { React, useState } from 'react';
+import { TextField, Button, Typography, Container, Box, Grid, Select, MenuItem, InputLabel } from '@mui/material';
 import ReactCountryFlag from 'react-country-flag';
 import axios from 'axios';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
+import { useTimezoneSelect, allTimezones } from 'react-timezone-select';
+import { useDispatch } from 'react-redux';
+import { adminDetails } from 'store/reducers/menu';
 
 function AuthLogin() {
   const {
@@ -14,6 +17,19 @@ function AuthLogin() {
     formState: { errors }
   } = useForm();
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const timezones = {
+    ...allTimezones
+    // Add timezones like below given example
+    // 'Europe/Berlin': 'Frankfurt'
+  };
+  const { options, parseTimezone } = useTimezoneSelect({ timezones, displayValue: 'UTC' });
+  const [timezone, setTimezone] = useState(options[0].value);
+
+  const handleTimezone = (e) => {
+    setTimezone(e.target.value);
+    parseTimezone(e.target.value);
+  };
 
   const onSubmit = async (data) => {
     try {
@@ -21,6 +37,7 @@ function AuthLogin() {
         withCredentials: true
       });
       if (response.status === 200) {
+        dispatch(adminDetails({ adminDetails: { name: response?.data?.data?.AdminNickName, site: response?.data?.data?.SiteID } }));
         navigate('/');
       }
     } catch (error) {
@@ -157,6 +174,25 @@ function AuthLogin() {
                   size="small"
                   style={{ background: 'white' }}
                 />
+                <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                  <InputLabel sx={{ width: '10%' }} id="timezone">
+                    UTC
+                  </InputLabel>
+                  <Select
+                    labelId="timezone"
+                    value={timezone}
+                    {...register('timezone')}
+                    size="small"
+                    onChange={handleTimezone}
+                    id="timezone-select"
+                    name="timezone"
+                    sx={{ width: '90%' }}
+                  >
+                    {options.map((option) => (
+                      <MenuItem value={option.value}>{option.label}</MenuItem>
+                    ))}
+                  </Select>
+                </Box>
                 <Button
                   style={{
                     marginTop: '1rem',

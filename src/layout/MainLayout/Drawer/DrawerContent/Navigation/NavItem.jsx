@@ -17,21 +17,21 @@ const NavItem = ({ item, level }) => {
     itemTarget = '_blank';
   }
 
-  let listItemProps = { component: forwardRef((props, ref) => <Link ref={ref} {...props} to={item.url} target={itemTarget} />) };
+  let listItemProps = { component: forwardRef((props, ref) => <Link ref={ref} {...props} to={item.MenuPath} target={itemTarget} />) };
   if (item?.external) {
-    listItemProps = { component: 'a', href: item.url, target: itemTarget };
+    listItemProps = { component: 'a', href: item.MenuPath, target: itemTarget };
   }
 
   const itemHandler = (id) => {
     dispatch(activeItem({ openItem: [id] }));
   };
 
-  const itemIcon = item.icon ? item.icon : false;
+  const itemIcon = item.IconName && item.IconName !== '1' ? item.IconName : false;
 
-  const isSelected = openItem.findIndex((id) => id === item.id) > -1;
+  const isSelected = openItem.findIndex((id) => id === item.MenuID) > -1;
   useEffect(() => {
-    if (pathname.includes(item.url)) {
-      dispatch(activeItem({ openItem: [item.id] }));
+    if (pathname.includes(item.MenuPath)) {
+      dispatch(activeItem({ openItem: [item.MenuID] }));
     }
     // eslint-disable-next-line
   }, [pathname]);
@@ -43,7 +43,7 @@ const NavItem = ({ item, level }) => {
     <ListItemButton
       {...listItemProps}
       disabled={item.disabled}
-      onClick={() => itemHandler(item.id)}
+      onClick={() => itemHandler(item.MenuID)}
       selected={isSelected}
       sx={{
         zIndex: 1201,
@@ -98,7 +98,7 @@ const NavItem = ({ item, level }) => {
               {!itemIcon && isSelected && (
                 <CircleIcon sx={{ height: 12, width: 12, position: 'absolute', left: '-1.5rem', top: '0.25rem' }} />
               )}
-              {item.title}
+              {item.MenuName}
             </Typography>
           }
         />

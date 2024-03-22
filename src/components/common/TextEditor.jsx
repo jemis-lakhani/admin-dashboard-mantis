@@ -1,5 +1,5 @@
 import React from 'react';
-import MUIRichTextEditor from 'mui-rte';
+// import MUIRichTextEditor from 'mui-rte';
 
 const MyHashTagDecorator = (props) => {
   const hashtagUrl = 'http://myurl/' + props.decoratedText;
@@ -22,7 +22,7 @@ const save = (data) => {
 const TextEditor = () => {
   return (
     <>
-      <MUIRichTextEditor
+      {/* <MUIRichTextEditor
         onChange={save}
         label="Type something here..."
         decorators={[
@@ -31,7 +31,8 @@ const TextEditor = () => {
             regex: /\#[\w]+/g
           }
         ]}
-      />
+      /> */}
+      <span>Feature in progress!!</span>
     </>
   );
 };

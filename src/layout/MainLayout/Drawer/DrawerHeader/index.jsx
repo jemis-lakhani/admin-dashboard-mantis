@@ -27,7 +27,8 @@ const DrawerHeader = ({ open }) => {
   return (
     <DrawerHeaderStyled theme={theme} open={open}>
       <Stack direction="column" spacing={2} alignItems="center">
-        <Logo />
+        {/* <Logo /> */}
+        <span style={{ fontSize: '1.25rem', fontWeight: 600 }}>InsightAdmin</span>
         <Stack direction="row" alignItems="center" justify="space-between">
           <FaceIcon fontSize="small" sx={{ color: theme.palette.info.dark }} />
           <Tooltip title="Account">

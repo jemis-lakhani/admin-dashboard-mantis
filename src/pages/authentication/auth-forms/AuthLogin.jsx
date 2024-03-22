@@ -64,32 +64,32 @@ function AuthLogin() {
           backgroundPosition: 'center'
         }}
       >
-        <Box
+        {/* <Box
           sx={{
             backgroundImage: "url('/logo1.svg')",
             width: '50px',
             height: '50px',
             m: '5% auto 0'
           }}
-        ></Box>
-        <Box
+        ></Box> */}
+        {/* <Box
           sx={{
             backgroundImage: "url('/logo2.svg')",
             width: '150px',
             height: '30px',
             m: '1% auto 0'
           }}
-        ></Box>
+        ></Box> */}
         <Typography
           variant="subtitle1"
           align="center"
           style={{
             color: 'white',
-            fontSize: '10px',
-            margin: '4px auto 0'
+            fontSize: '1.5rem',
+            margin: '44px auto 0'
           }}
         >
-          Vincent Client Login
+          InsightAdmin
         </Typography>
       </Container>
       <Container
@@ -134,7 +134,7 @@ function AuthLogin() {
                 }}
               >
                 <Typography sx={{ fontSize: '1.5rem', fontWeight: 500 }}>Welcome</Typography>
-                <Typography sx={{ fontSize: '1rem' }}>Please Login</Typography>
+                <Typography sx={{ fontSize: '1rem' }}>Testing Only! Use any credentials.</Typography>
               </Box>
             </Grid>
             <Grid item>
@@ -240,7 +240,7 @@ function AuthLogin() {
             </Grid>
           </Grid>
           <Typography variant="body2" align="center" style={{ color: '#888888', fontSize: '0.75rem', marginTop: '1rem' }}>
-            Vincent @2024
+            InsightAdmin @2024
           </Typography>
         </Box>
       </Container>
